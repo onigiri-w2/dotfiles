@@ -121,6 +121,10 @@ return {
 							["<C-d>"] = actions.delete_buffer,
 						},
 					},
+					layout_config = {
+						prompt_position = "top",
+					},
+					sorting_strategy = "ascending",
 				},
 				pickers = {
 					buffers = {
