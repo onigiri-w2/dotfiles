@@ -58,6 +58,8 @@ keymap.set("n", "sl", "<C-w>l") -- ウィンドウを右に移動
 -- 閉じる系の操作
 keymap.set("n", ";q", "<C-w>c", { desc = "remove window" }) -- ウィンドウを閉じる
 keymap.set("n", ";w", "<cmd>lua Snacks.bufdelete()<cr>", { desc = "remove buffer" }) -- バッファを閉じる
+keymap.set("n", ";bo", "<cmd>lua Snacks.bufdelete.other()<cr>", { desc = "remove other buffers" }) -- 他のバッファを閉じる
+keymap.set("n", ";ba", "<cmd>lua Snacks.bufdelete.all()<cr>", { desc = "remove all buffers" }) -- 全てのバッファを閉じる
 
 -- 定義ジャンプ
 keymap.set("n", "gs", "<C-w>v<cmd>lua vim.lsp.buf.definition()<cr>", { desc = "split definition" }) -- 定義を分割
@@ -66,23 +68,12 @@ keymap.set("n", "gs", "<C-w>v<cmd>lua vim.lsp.buf.definition()<cr>", { desc = "s
 keymap.set("n", "<leader>n", ":e %:h/", { noremap = true })
 
 -- zenmode
-keymap.set("n", "<leader>uz", function()
-	local is_zen = vim.opt.number:get() == false -- 現在のZen状態をチェック
-
-	if is_zen then
-		-- Zen mode OFF
-		vim.opt.number = true
-		-- vim.opt.relativenumber = true
-		require("lualine").hide({ unhide = true })
-		vim.notify("ZenMode: Off")
-	else
-		-- Zen mode ON
-		vim.opt.number = false
-		-- vim.opt.relativenumber = false
-		require("lualine").hide()
-		vim.notify("ZenMode: On")
-	end
-end, { desc = "Toggle Zen mode", noremap = true, silent = true })
+local zenmode = require("functions.zenmode")
+keymap.set("n", "<leader>uz", zenmode.toggle, {
+	desc = "Toggle Zen mode",
+	noremap = true,
+	silent = true,
+})
 
 -- wrap toggle
 keymap.set("n", "<leader>uw", function()

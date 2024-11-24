@@ -6,7 +6,7 @@ vim.opt.encoding = "utf-8" -- 内部エンコーディングをUTF-8に設定
 vim.opt.fileencoding = "utf-8" -- ファイル保存時のエンコーディングをUTF-8に設定
 vim.g.bigfile_size = 1024 * 1024 * 1 -- cf) https://github.com/neovim/neovim/issues/29900
 -- UI Settings
-vim.opt.number = false -- 行番号を表示
+vim.opt.number = true -- 行番号を表示
 vim.opt.relativenumber = false -- 相対行番号を無効化
 vim.opt.title = true -- ウィンドウタイトルにファイル名を表示
 vim.opt.showcmd = true -- 入力中のコマンドを表示
