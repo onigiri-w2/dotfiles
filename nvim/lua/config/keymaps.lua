@@ -66,7 +66,7 @@ keymap.set("n", "gs", "<C-w>v<cmd>lua vim.lsp.buf.definition()<cr>", { desc = "s
 keymap.set("n", "<leader>n", ":e %:h/", { noremap = true })
 
 -- zenmode
-local zenmode = require("functions.zenmode")
+local zenmode = require("onigiri.zenmode")
 keymap.set("n", "<leader>uz", zenmode.toggle, {
 	desc = "Toggle Zen mode",
 	noremap = true,
