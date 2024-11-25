@@ -13,6 +13,7 @@ vim.opt.showcmd = true -- 入力中のコマンドを表示
 vim.opt.cmdheight = 1 -- コマンドラインの高さを1行に設定
 vim.opt.laststatus = 3 -- グローバルステータスラインを有効化（Neovim 0.7+）
 vim.opt.scrolloff = 10 -- カーソルの上下に最低10行の余白を保持
+-- vim.opt.termguicolors = true -- ターミナルの色を24ビットに設定
 
 -- Indentation Settings
 vim.opt.autoindent = true -- 自動インデントを有効化

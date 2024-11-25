@@ -20,13 +20,15 @@ brew "pyenv"
 brew "pyenv-virtualenv"
 brew "poetry"
 
-
 # --------------------- #
 # react native
 # --------------------- #
 brew "watchman"
 
-
+# --------------------- #
+# fonts
+# --------------------- #
+font-monaspace-nerd-font
 
 # --------------------- #
 # Mac tools

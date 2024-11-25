@@ -1,7 +1,8 @@
 local functions = require("functions")
 
 -- アプリ開閉ショートカット
-toggleApp("kitty", "i")
+-- toggleApp("kitty", "i")
+toggleApp("wezterm", "i")
 toggleApp("obsidian", "n")
 toggleApp("Google Chrome", "o")
 -- toggleApp("obsidian", "o")
