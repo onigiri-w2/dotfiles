@@ -30,8 +30,6 @@ keymap.del("n", "<C-Right>")
 -- ユーザー独自設定
 ------------------------------------
 
-keymap.set("i", "jj", "<ESC>", { noremap = true, silent = true })
-
 -- sを無効化
 keymap.set("n", "s", "<Nop>")
 

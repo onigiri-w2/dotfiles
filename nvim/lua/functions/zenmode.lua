@@ -25,7 +25,7 @@ M.toggle = function()
 		vim.o.showtabline = 0
 		require("lualine").hide({ unhide = false, place = { "statusline" } })
 		setup_buffer_settings(true)
-		vim.notify("ZenMode Off")
+		vim.notify("ZenMode On")
 	else
 		-- Zen mode OFF
 		vim.o.number = true

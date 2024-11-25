@@ -1,33 +1,18 @@
-local functions = require("functions")
+-- hsの診断が邪魔なので無効化
+---@diagnostic disable: undefined-global
 
--- アプリ開閉ショートカット
--- toggleApp("kitty", "i")
-toggleApp("wezterm", "i")
-toggleApp("obsidian", "n")
-toggleApp("Google Chrome", "o")
--- toggleApp("obsidian", "o")
--- toggleApp("logseq", ":")
-toggleApp("com.apple.iphonesimulator", ";")
+local M = {}
 
--- キーバインド変更
-remapKey({ "ctrl" }, "h", keyCode("left"))
-remapKey({ "ctrl", "cmd" }, "h", keyCode("left", { "cmd" }))
-remapKey({ "ctrl" }, "j", keyCode("down"))
-remapKey({ "ctrl", "cmd" }, "j", keyCode("down", { "cmd" }))
-remapKey({ "ctrl" }, "k", keyCode("up"))
-remapKey({ "ctrl", "cmd" }, "k", keyCode("up", { "cmd" }))
-remapKey({ "ctrl" }, "l", keyCode("right"))
-remapKey({ "ctrl", "cmd" }, "l", keyCode("right", { "cmd" }))
-
--- ウィンドウのサイズ変更 + 移動
+-- アニメーションなしでウィンドウを移動する関数
 local function moveWindowWithoutAnimation(win, f)
 	local animationDuration = hs.window.animationDuration
 	hs.window.animationDuration = 0
 	win:setFrame(f)
 	hs.window.animationDuration = animationDuration
 end
--- 左半分に移動
-hs.hotkey.bind({ "ctrl", "alt" }, "h", function()
+
+-- ウィンドウを左半分に移動
+function M.moveLeft()
 	local win = hs.window.focusedWindow()
 	local f = win:frame()
 	local screen = win:screen()
@@ -38,10 +23,10 @@ hs.hotkey.bind({ "ctrl", "alt" }, "h", function()
 	f.w = max.w / 2
 	f.h = max.h
 	moveWindowWithoutAnimation(win, f)
-end)
+end
 
--- 右半分に移動
-hs.hotkey.bind({ "ctrl", "alt" }, "l", function()
+-- ウィンドウを右半分に移動
+function M.moveRight()
 	local win = hs.window.focusedWindow()
 	local f = win:frame()
 	local screen = win:screen()
@@ -52,10 +37,10 @@ hs.hotkey.bind({ "ctrl", "alt" }, "l", function()
 	f.w = max.w / 2
 	f.h = max.h
 	moveWindowWithoutAnimation(win, f)
-end)
+end
 
--- 最大化
-hs.hotkey.bind({ "ctrl", "alt" }, "j", function()
+-- ウィンドウを最大化
+function M.maximize()
 	local win = hs.window.focusedWindow()
 	local f = win:frame()
 	local screen = win:screen()
@@ -66,10 +51,10 @@ hs.hotkey.bind({ "ctrl", "alt" }, "j", function()
 	f.w = max.w
 	f.h = max.h
 	moveWindowWithoutAnimation(win, f)
-end)
+end
 
--- 中央に配置
-hs.hotkey.bind({ "ctrl", "alt" }, "k", function()
+-- ウィンドウを中央に配置
+function M.center()
 	local win = hs.window.focusedWindow()
 	local f = win:frame()
 	local screen = win:screen()
@@ -77,10 +62,11 @@ hs.hotkey.bind({ "ctrl", "alt" }, "k", function()
 
 	local width = max.w * 0.75
 	local height = max.h * 0.75
-
 	f.x = max.x + ((max.w - width) / 2)
 	f.y = max.y + ((max.h - height) / 2)
 	f.w = width
 	f.h = height
 	moveWindowWithoutAnimation(win, f)
-end)
+end
+
+return M

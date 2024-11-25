@@ -1,2 +1,2 @@
-alias zshe="vim ~/.zshrc"
-alias zshr="source ~/.zshrc"
+alias zshedit="vim ~/.zshrc"
+alias zshreload="source ~/.zshrc"

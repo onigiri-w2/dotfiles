@@ -52,10 +52,12 @@ config.window_background_opacity = 1
 config.macos_window_background_blur = 0
 
 -- keybindings
+config.send_composed_key_when_left_alt_is_pressed = false
+config.send_composed_key_when_right_alt_is_pressed = false
 local opacity = require("functions.opacity")
 config.keys = {
 	{ key = "0", mods = "CMD", action = opacity.create_toggle_action(1, 0.9) },
-	{ key = "f", mods = "CMD|SHIFT", action = wezterm.action.ToggleFullScreen },
+	{ key = "9", mods = "CMD", action = wezterm.action.ToggleFullScreen },
 }
 
 return config
