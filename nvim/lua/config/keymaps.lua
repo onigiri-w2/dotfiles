@@ -78,3 +78,11 @@ keymap.set("n", "<leader>uw", function()
 	vim.wo.wrap = not vim.wo.wrap
 	vim.notify("Wrap: " .. (vim.wo.wrap and "Enabled" or "Disabled"))
 end, { noremap = true, silent = true, desc = "Toggle wrap" })
+
+-- bufferline toggle
+-- local bufferlineToggler = require("onigiri.bufferlineToggler")
+-- keymap.set("n", "<leader>ub", bufferlineToggler.toggle, {
+-- 	desc = "Toggle bufferline",
+-- 	noremap = true,
+-- 	silent = true,
+-- })

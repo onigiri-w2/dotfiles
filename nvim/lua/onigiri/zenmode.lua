@@ -8,7 +8,7 @@ local augroup = vim.api.nvim_create_augroup("ZenMode", { clear = true })
 -- バッファ切り替え時の設定を管理する関数
 local function setup_buffer_settings(zen_enabled)
 	vim.api.nvim_clear_autocmds({ group = augroup })
-	vim.api.nvim_create_autocmd("BufEnter", {
+	vim.api.nvim_create_autocmd({ "BufEnter", "BufAdd", "BufWinEnter" }, {
 		group = augroup,
 		callback = function()
 			vim.o.number = not zen_enabled

@@ -55,3 +55,6 @@ vim.opt.laststatus = 0
 -- mode切り替え時のスタック回避
 vim.opt.timeoutlen = 1000
 vim.opt.ttimeoutlen = 0
+
+-- spelling check
+vim.opt.spelllang = { "en_us", "cjk" }

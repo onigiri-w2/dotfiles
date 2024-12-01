@@ -1,0 +1,36 @@
+-- local M = {}
+--
+-- -- bufferlineの表示状態を保持
+-- M.is_active = true
+--
+-- -- Autocmdのグループを作成
+-- local augroup = vim.api.nvim_create_augroup("BufferlineToggler", { clear = true })
+--
+-- -- バッファ切り替え時の設定を管理する関数
+-- local function setup_buffer_settings(bufferline_enabled)
+-- 	vim.api.nvim_clear_autocmds({ group = augroup })
+-- 	vim.api.nvim_create_autocmd("BufEnter", {
+-- 		group = augroup,
+-- 		callback = function()
+-- 			vim.o.showtabline = bufferline_enabled and 2 or 0
+-- 		end,
+-- 	})
+-- end
+--
+-- -- bufferlineの表示/非表示を切り替える関数
+-- M.toggle = function()
+-- 	M.is_active = not M.is_active
+-- 	if M.is_active then
+-- 		-- Bufferline ON
+-- 		vim.o.showtabline = 2
+-- 		setup_buffer_settings(true)
+-- 		vim.notify("Bufferline On")
+-- 	else
+-- 		-- Bufferline OFF
+-- 		vim.o.showtabline = 0
+-- 		setup_buffer_settings(false)
+-- 		vim.notify("Bufferline Off")
+-- 	end
+-- end
+--
+-- return M

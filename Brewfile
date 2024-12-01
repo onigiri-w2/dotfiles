@@ -31,6 +31,11 @@ brew "watchman"
 font-monaspace-nerd-font
 
 # --------------------- #
+# browser
+# --------------------- #
+cask "arc"
+
+# --------------------- #
 # Mac tools
 # --------------------- #
 cask "rectangle"
@@ -41,4 +46,5 @@ cask "postman"
 cask "selfcontrol"
 cask "hammerspoon"
 cask "hyperkey"
+cask "alt-tab"
 

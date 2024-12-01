@@ -69,4 +69,34 @@ function M.center()
 	moveWindowWithoutAnimation(win, f)
 end
 
+local originalFrames = {}
+function M.toggleMax()
+	local win = hs.window.focusedWindow()
+	if not win then
+		return
+	end
+
+	local id = win:id()
+
+	-- 現在最大化されているかチェック
+	local f = win:frame()
+	local screen = win:screen()
+	local max = screen:frame()
+
+	-- 最大化されているかの判定
+	local isMaximized = f.x == max.x and f.y == max.y and f.w == max.w and f.h == max.h
+
+	if isMaximized then
+		-- 元のサイズが保存されている場合は戻す
+		if originalFrames[id] then
+			moveWindowWithoutAnimation(win, originalFrames[id])
+			originalFrames[id] = nil
+		end
+	else
+		-- 現在のサイズを保存して最大化
+		originalFrames[id] = f
+		M.maximize()
+	end
+end
+
 return M
