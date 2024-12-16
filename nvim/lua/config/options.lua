@@ -7,7 +7,7 @@ vim.opt.fileencoding = "utf-8" -- ファイル保存時のエンコーディン�
 vim.g.bigfile_size = 1024 * 1024 * 1 -- cf) https://github.com/neovim/neovim/issues/29900
 -- UI Settings
 vim.opt.number = true -- 行番号を表示
-vim.opt.relativenumber = false -- 相対行番号を無効化
+vim.opt.relativenumber = true -- 相対行番号を無効化
 vim.opt.title = true -- ウィンドウタイトルにファイル名を表示
 vim.opt.showcmd = true -- 入力中のコマンドを表示
 vim.opt.cmdheight = 1 -- コマンドラインの高さを1行に設定

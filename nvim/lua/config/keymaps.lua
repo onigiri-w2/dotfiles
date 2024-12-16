@@ -26,6 +26,8 @@ keymap.del("n", "<C-Down>")
 keymap.del("n", "<C-Left>")
 keymap.del("n", "<C-Right>")
 
+keymap.del("n", "f")
+
 ------------------------------------
 -- ユーザー独自設定
 ------------------------------------
@@ -79,10 +81,5 @@ keymap.set("n", "<leader>uw", function()
 	vim.notify("Wrap: " .. (vim.wo.wrap and "Enabled" or "Disabled"))
 end, { noremap = true, silent = true, desc = "Toggle wrap" })
 
--- bufferline toggle
--- local bufferlineToggler = require("onigiri.bufferlineToggler")
--- keymap.set("n", "<leader>ub", bufferlineToggler.toggle, {
--- 	desc = "Toggle bufferline",
--- 	noremap = true,
--- 	silent = true,
--- })
+-- seek
+keymap.set({ "n", "x", "o" }, "f", "<cmd>lua require('flash').jump()<cr>", { desc = "Flash Jump" })

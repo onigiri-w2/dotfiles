@@ -12,6 +12,7 @@ local function setup_buffer_settings(zen_enabled)
 		group = augroup,
 		callback = function()
 			vim.o.number = not zen_enabled
+			vim.o.relativenumber = not zen_enabled
 			vim.o.showtabline = zen_enabled and 0 or 2
 		end,
 	})
@@ -22,6 +23,7 @@ M.toggle = function()
 	if M.is_active then
 		-- Zen mode ON
 		vim.o.number = false
+		vim.o.relativenumber = false
 		vim.o.showtabline = 0
 		require("lualine").hide({ unhide = false, place = { "statusline" } })
 		setup_buffer_settings(true)
@@ -29,6 +31,7 @@ M.toggle = function()
 	else
 		-- Zen mode OFF
 		vim.o.number = true
+		vim.o.relativenumber = true
 		vim.o.showtabline = 2
 		require("lualine").hide({ unhide = true, place = { "statusline" } })
 		setup_buffer_settings(false)
