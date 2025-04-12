@@ -58,3 +58,10 @@ vim.opt.ttimeoutlen = 0
 
 -- spelling check
 vim.opt.spelllang = { "en_us", "cjk" }
+
+-- File types
+vim.filetype.add({
+	extension = {
+		mdx = "mdx",
+	},
+})
