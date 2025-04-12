@@ -46,6 +46,7 @@ config.adjust_window_size_when_changing_font_size = false
 
 -- colorscheme
 config.color_scheme = "tokyonight-storm"
+-- config.color_scheme = "tokyonight_day"
 
 -- background settings
 config.window_background_opacity = 1
