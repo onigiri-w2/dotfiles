@@ -7,12 +7,12 @@ vim.opt.fileencoding = "utf-8" -- ファイル保存時のエンコーディン�
 vim.g.bigfile_size = 1024 * 1024 * 1 -- cf) https://github.com/neovim/neovim/issues/29900
 -- UI Settings
 vim.opt.number = true -- 行番号を表示
-vim.opt.relativenumber = true -- 相対行番号を無効化
+vim.opt.relativenumber = false -- 相対行番号を無効化（パフォーマンス重視）
 vim.opt.title = true -- ウィンドウタイトルにファイル名を表示
 vim.opt.showcmd = true -- 入力中のコマンドを表示
 vim.opt.cmdheight = 1 -- コマンドラインの高さを1行に設定
 vim.opt.laststatus = 3 -- グローバルステータスラインを有効化（Neovim 0.7+）
-vim.opt.scrolloff = 10 -- カーソルの上下に最低10行の余白を保持
+vim.opt.scrolloff = 3 -- カーソルの上下に最低3行の余白を保持（パフォーマンス重視）
 -- vim.opt.termguicolors = true -- ターミナルの色を24ビットに設定
 
 -- Indentation Settings
@@ -52,6 +52,18 @@ end
 -- Disable Statusline
 vim.opt.laststatus = 0
 
+-- Performance optimizations
+vim.opt.updatetime = 300 -- カーソルイベント頻度を下げる (was 100)
+vim.opt.redrawtime = 1500 -- faster redraw timeout
+
+-- ウィンドウサイズ関連の最適化
+vim.opt.lazyredraw = true -- マクロ実行中は再描画しない
+vim.opt.ttyfast = true -- 高速ターミナル接続を前提とした最適化
+vim.opt.synmaxcol = 200 -- 200文字以降はシンタックスハイライト無効
+
+-- スクロール最適化
+vim.opt.cursorline = false -- カーソル行ハイライト無効化
+
 -- mode切り替え時のスタック回避
 vim.opt.timeoutlen = 1000
 vim.opt.ttimeoutlen = 0
@@ -65,3 +77,6 @@ vim.filetype.add({
 		mdx = "mdx",
 	},
 })
+
+-- 大きなファイル用の設定
+vim.g.bigfile_size = 1024 * 1024 * 0.5 -- 500KB以上で重い機能を無効化

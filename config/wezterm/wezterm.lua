@@ -1,6 +1,11 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
+config.front_end = "WebGpu"
+config.max_fps = 120
+config.webgpu_power_preference = "HighPerformance"
+config.cursor_blink_rate = 0
+
 -- font settings
 config.font = wezterm.font_with_fallback({
 	{ family = "Monaco" },

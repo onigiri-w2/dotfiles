@@ -41,7 +41,6 @@ keymap.set("n", "x", '"_x') -- 文字を削除
 -- コーディング
 keymap.set("n", "+", "<C-a>") -- 数字をインクリメント
 keymap.set("n", "-", "<C-x>") -- 数字をデクリメント
-keymap.set("n", "<C-a>", "gg<S-v>G") -- 全選択
 keymap.set("n", "<leader>.", "<leader>cr", { desc = "Rename", remap = true }) -- コードを実行
 -- 全行選択
 keymap.set("n", "<leader>a", "ggVG")

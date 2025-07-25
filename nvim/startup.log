@@ -1,0 +1,142 @@
+--- Startup times for process: Primary (or UI client) ---
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.000  000.000: --- NVIM STARTING ---
+000.091  000.090: event init
+000.189  000.098: early init
+000.205  000.017: locale set
+000.227  000.022: init first window
+017.256  017.029: inits 1
+017.271  000.014: window checked
+017.275  000.004: parsing arguments
+017.572  000.024  000.024: require('vim.shared')
+017.622  000.020  000.020: require('vim.inspect')
+017.645  000.018  000.018: require('vim._options')
+017.646  000.072  000.035: require('vim._editor')
+017.647  000.115  000.019: require('vim._init_packages')
+017.648  000.258: init lua interpreter
+018.112  000.464: expanding arguments
+018.123  000.011: inits 2
+018.289  000.166: init highlight
+018.303  000.014: clear screen
+018.375  000.011  000.011: require('vim.keymap')
+019.162  000.097  000.097: sourcing nvim_exec2()
+019.261  000.957  000.848: require('vim._defaults')
+019.262  000.003: init default mappings & autocommands
+019.669  000.033  000.033: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/ftplugin.vim
+019.729  000.016  000.016: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/indent.vim
+020.541  000.446  000.446: require('lazy')
+020.578  000.027  000.027: require('ffi')
+020.607  000.018  000.018: require('vim.fs')
+020.750  000.141  000.141: require('vim.uri')
+020.756  000.177  000.018: require('vim.loader')
+020.910  000.138  000.138: require('lazy.stats')
+021.034  000.098  000.098: require('lazy.core.util')
+021.141  000.106  000.106: require('lazy.core.config')
+021.321  000.083  000.083: require('lazy.core.handler')
+021.651  000.161  000.161: require('lazy.pkg')
+021.654  000.245  000.085: require('lazy.core.meta')
+021.659  000.337  000.091: require('lazy.core.plugin')
+021.663  000.521  000.101: require('lazy.core.loader')
+022.459  000.099  000.099: require('lazy.async')
+022.758  000.185  000.185: require('lazy.manage.process')
+022.876  000.117  000.117: require('lazy.terminal')
+022.880  000.419  000.116: require('lazy.manage.task')
+022.881  000.623  000.105: require('lazy.manage.runner')
+022.883  000.723  000.100: require('lazy.manage')
+022.885  000.836  000.113: require('lazy.view.commands')
+023.016  000.120  000.120: require('lazy.core.fragments')
+024.166  000.121  000.121: require('lazyvim.util')
+024.174  000.259  000.139: require('lazyvim.config')
+025.135  000.634  000.634: require('lazyvim.config.options')
+025.585  000.102  000.102: require('lazyvim.util.ui')
+025.680  000.093  000.093: require('lazyvim.util.deprecated')
+026.846  001.034  001.034: require('vim.filetype')
+026.849  001.681  000.451: require('config.options')
+027.108  000.237  000.237: require('lazyvim.util.plugin')
+027.211  000.100  000.100: require('lazyvim.util.inject')
+027.305  000.091  000.091: require('lazy.core.handler.event')
+028.377  000.092  000.092: require('vim.version')
+029.308  000.095  000.095: require('lazyvim.util.pick')
+029.769  000.084  000.084: require('lazyvim.util.lsp')
+032.408  000.209  000.209: require('lazy.core.handler.ft')
+032.509  000.091  000.091: require('lazy.core.handler.cmd')
+032.620  000.108  000.108: require('lazy.core.handler.keys')
+033.056  000.007  000.007: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+033.066  000.001  000.001: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+033.975  000.001  000.001: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+033.984  000.001  000.001: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+036.699  000.035  000.035: sourcing nvim_exec2() called at /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/filetype.lua:0
+036.701  000.090  000.055: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/filetype.lua
+036.705  000.149  000.059: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+037.235  000.074  000.074: require('vim.treesitter.language')
+037.333  000.096  000.096: require('vim.func')
+037.421  000.086  000.086: require('vim.func._memoize')
+037.465  000.397  000.140: require('vim.treesitter.query')
+037.470  000.668  000.272: require('nvim-treesitter.query_predicates')
+037.554  000.001  000.001: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+037.560  000.001  000.001: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+037.667  000.088  000.088: require('lazyvim')
+038.067  000.001  000.001: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+038.073  000.001  000.001: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+038.428  000.072  000.072: require('tokyonight.config')
+038.429  000.279  000.208: require('tokyonight')
+038.436  000.725  000.444: require('tokyonight')
+038.589  000.081  000.081: require('tokyonight.util')
+038.590  000.152  000.070: require('tokyonight.theme')
+038.873  000.105  000.105: require('tokyonight.colors')
+039.324  000.116  000.116: require('tokyonight.hsluv')
+039.665  000.115  000.115: require('tokyonight.groups')
+040.693  000.248  000.248: require('snacks')
+040.694  000.285  000.036: sourcing /Users/kenshiro/.local/share/nvim/lazy/snacks.nvim/plugin/snacks.lua
+040.696  000.334  000.049: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+040.700  000.001  000.001: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+040.705  000.001  000.001: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+041.048  000.035  000.035: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/plugin/editorconfig.lua
+041.050  000.072  000.036: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+041.171  000.086  000.086: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/plugin/gzip.vim
+041.172  000.120  000.034: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+041.243  000.036  000.036: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/plugin/man.lua
+041.246  000.070  000.035: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+041.975  000.176  000.176: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/pack/dist/opt/matchit/plugin/matchit.vim
+041.996  000.711  000.535: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/plugin/matchit.vim
+041.998  000.751  000.040: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+042.192  000.093  000.093: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/plugin/matchparen.vim
+042.195  000.183  000.090: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+042.866  000.201  000.201: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/pack/dist/opt/netrw/plugin/netrwPlugin.vim
+042.881  000.636  000.435: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/plugin/netrwPlugin.vim
+042.888  000.688  000.052: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+043.031  000.079  000.079: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/plugin/osc52.lua
+043.033  000.138  000.059: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+043.256  000.138  000.138: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/plugin/rplugin.vim
+043.259  000.222  000.084: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+043.377  000.045  000.045: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/plugin/shada.vim
+043.379  000.114  000.070: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+043.438  000.011  000.011: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/plugin/spellfile.vim
+043.440  000.058  000.047: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+043.554  000.068  000.068: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/plugin/tarPlugin.vim
+043.556  000.114  000.046: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+043.661  000.051  000.051: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/plugin/tohtml.lua
+043.826  000.266  000.215: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+043.887  000.014  000.014: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/plugin/tutor.vim
+043.889  000.060  000.045: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+044.014  000.067  000.067: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/plugin/zipPlugin.vim
+044.016  000.124  000.058: sourcing nvim_exec2() called at /Users/kenshiro/dotfiles/nvim/init.lua:0
+044.210  024.362  012.765: require('config.lazy')
+044.211  024.382  000.020: sourcing /Users/kenshiro/.config/nvim/init.lua
+044.222  000.528: sourcing vimrc file(s)
+044.435  000.031  000.031: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/filetype.lua
+044.610  000.035  000.035: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/syntax/synload.vim
+044.648  000.144  000.109: sourcing /opt/homebrew/Cellar/neovim/0.11.1/share/nvim/runtime/syntax/syntax.vim
+044.654  000.258: inits 3
+045.343  000.689: reading ShaDa
+046.629  000.621  000.621: require('vim.filetype.detect')
+047.628  001.664: reading stdin
+047.693  000.066: opening buffers
+047.713  000.019: BufEnter autocommands
+047.714  000.001: editing files in windows
+047.736  000.022: --- NVIM STARTED ---
+

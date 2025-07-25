@@ -12,7 +12,7 @@ require("hs.ipc")
 local appControler = require("functions.appControler")
 hs.hotkey.bind({ "ctrl", "cmd" }, "i", appControler.toggleApp("Wezterm"))
 -- hs.hotkey.bind({ "ctrl", "cmd" }, ";", appControler.openApp("Claude"))
-hs.hotkey.bind({ "ctrl", "cmd" }, "n", appControler.toggleApp("Obsidian"))
+hs.hotkey.bind({ "ctrl", "cmd" }, "n", appControler.toggleApp("Cosense"))
 
 -- vim移動のkeymap
 local keyCode = require("functions.keyUtils").keyCode
