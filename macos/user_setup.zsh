@@ -17,6 +17,10 @@ echo "Configuring Keyboard..."
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
+echo "Configring Spotlight..."
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "<dict><key>enabled</key><false/></dict>"
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 "<dict><key>enabled</key><true/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>524288</integer></array></dict></dict>"
+
 echo "Applying changes..."
 killall Dock
 killall SystemUIServer
@@ -53,7 +57,7 @@ volta install npm@latest
 
 # Install useful global packages
 echo "Installing global npm packages..."
-npm install -g @anthropic/claude-code
+npm install -g @anthropic-ai/claude-code
 
 # Verify installations
 echo "Verifying Node.js setup..."
