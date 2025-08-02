@@ -28,11 +28,6 @@ else
       exit 1
     fi
     
-    echo "Homebrew installed successfully at: $(which brew)"
-fi
-
-# ----------------------------- #
-# bundle Brewfile
 # ----------------------------- #
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
@@ -48,4 +43,7 @@ ln -sf "$SCRIPT_DIR/Brewfile" "$HOME/.config/brew/Brewfile"
 
 echo "Installing Homebrew bundle..."
 
+# ----------------------------- #
+
+# ----------------------------- #
 brew bundle install --file="$HOME/.config/brew/Brewfile"
