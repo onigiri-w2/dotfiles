@@ -57,7 +57,7 @@ vim.opt.updatetime = 300 -- カーソルイベント頻度を下げる (was 100)
 vim.opt.redrawtime = 1500 -- faster redraw timeout
 
 -- ウィンドウサイズ関連の最適化
-vim.opt.lazyredraw = true -- マクロ実行中は再描画しない
+vim.opt.lazyredraw = false -- noice.nvimとの互換性のため無効化
 vim.opt.ttyfast = true -- 高速ターミナル接続を前提とした最適化
 vim.opt.synmaxcol = 200 -- 200文字以降はシンタックスハイライト無効
 
