@@ -1,9 +1,3 @@
-# --------------------- #
-# cmd tools
-# --------------------- #
-brew "peco"
-brew "tree"
-brew "git"
 brew "nvim"
 brew "ripgrep"
 brew "fd"
@@ -12,6 +6,7 @@ brew "trash"
 brew "tmux"
 brew "tmuxinator"
 brew "ffmpeg"
+brew "direnv"
 cask "wezterm"
 
 # --------------------- #
@@ -41,6 +36,7 @@ cask "font-monaspace-nerd-font"
 # browser
 # --------------------- #
 cask "arc"
+cask "google-chrome"
 
 # --------------------- #
 # Docker
@@ -48,22 +44,24 @@ cask "arc"
 cask "docker"
 brew "docker-compose"
 
-# --------------------- #
-# Mac tools
-# --------------------- #
-cask "rectangle"
-cask "alfred"
-cask "clipy"
-cask "karabiner-elements"
-cask "postman"
-cask "selfcontrol"
-cask "hammerspoon"
-cask "hyperkey"
-cask "alt-tab"
-
 
 # --------------------- #
 # Rust
 # --------------------- #
 brew "rustup-init"
 
+
+# --------------------- #
+# Dev GUI tools
+# --------------------- #
+cask "alfred"
+cask "clipy"
+cask "hammerspoon"
+cask "hyperkey"
+cask "alt-tab"
+
+
+# --------------------- #
+# Other tools
+# --------------------- #
+cask "spotify"
