@@ -41,12 +41,7 @@ keymap.set("n", "x", '"_x') -- 文字を削除
 -- コーディング
 keymap.set("n", "+", "<C-a>") -- 数字をインクリメント
 keymap.set("n", "-", "<C-x>") -- 数字をデクリメント
-keymap.set("n", "<leader>.", "<leader>cr", { desc = "Rename", remap = true }) -- コードを実行
--- 全行選択
-keymap.set("n", "<leader>a", "ggVG")
-
--- バッファ操作
-keymap.set("n", "<tab>", "<cmd>bnext<cr>", { desc = "Next Buffer", silent = true })
+keymap.set("n", "<leader>.", "<leader>cr", { desc = "Rename", remap = true }) --- Rename
 
 -- ウィンドウ操作
 keymap.set("n", "ss", "<C-w>v") -- 垂直分割
@@ -68,17 +63,11 @@ keymap.set("n", "<leader>n", ":e %:h/", { noremap = true })
 
 -- zenmode
 local zenmode = require("onigiri.zenmode")
-keymap.set("n", "<leader>uz", zenmode.toggle, {
-	desc = "Toggle Zen mode",
-	noremap = true,
-	silent = true,
-})
+keymap.set("n", "<leader>uz", zenmode.toggle, { desc = "Toggle Zen mode", noremap = true, silent = true })
 
--- wrap toggle
-keymap.set("n", "<leader>uw", function()
-	vim.wo.wrap = not vim.wo.wrap
-	vim.notify("Wrap: " .. (vim.wo.wrap and "Enabled" or "Disabled"))
-end, { noremap = true, silent = true, desc = "Toggle wrap" })
+-- wrap
+local wrap = require("onigiri.wrap")
+keymap.set("n", "<leader>uw", wrap.toggle, { desc = "Toggle wrap", noremap = true, silent = true })
 
 -- seek
 keymap.set({ "n", "x", "o" }, "f", "<cmd>lua require('flash').jump()<cr>", { desc = "Flash Jump" })
