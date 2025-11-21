@@ -41,6 +41,7 @@ keymap.set("n", "x", '"_x') -- 文字を削除
 -- コーディング
 keymap.set("n", "+", "<C-a>") -- 数字をインクリメント
 keymap.set("n", "-", "<C-x>") -- 数字をデクリメント
+keymap.set("n", "<leader>a", "ggVG") -- ファイル全体選択
 keymap.set("n", "<leader>.", "<leader>cr", { desc = "Rename", remap = true }) --- Rename
 
 -- ウィンドウ操作
