@@ -1,5 +1,3 @@
--- Neovim Configuration
-
 -- Basic Settings
 vim.opt.encoding = "utf-8" -- 内部エンコーディングをUTF-8に設定
 vim.opt.fileencoding = "utf-8" -- ファイル保存時のエンコーディングをUTF-8に設定
@@ -59,3 +57,6 @@ vim.filetype.add({
 		mdx = "mdx",
 	},
 })
+
+-- LazyVim AI Settings
+vim.g.ai_cmp = false -- Copilot の blink.cmp 連携を無効化（インライン補完のみ使用）
