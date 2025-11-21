@@ -20,22 +20,30 @@ end
 
 M.toggle = function()
 	M.is_active = not M.is_active
+
+	-- lualine の存在チェック（グレースフルデグレード）
+	-- lualine がなくても Zen モードの基本機能（行番号・タブライン非表示）は動作する
+	-- ステータスライン非表示は lualine がある場合のみ有効
+	local ok, lualine = pcall(require, "lualine")
+
 	if M.is_active then
-		-- Zen mode ON
 		vim.o.number = false
 		vim.o.relativenumber = false
 		vim.o.showtabline = 0
-		require("lualine").hide({ unhide = false, place = { "statusline" } })
+		if ok then
+			lualine.hide({ unhide = false, place = { "statusline" } })
+		end
 		setup_buffer_settings(true)
 		vim.notify("ZenMode On")
 	else
-		-- Zen mode OFF
 		vim.o.number = true
 		vim.o.relativenumber = true
 		vim.o.showtabline = 2
-		require("lualine").hide({ unhide = true, place = { "statusline" } })
+		if ok then
+			lualine.hide({ unhide = true, place = { "statusline" } })
+		end
 		setup_buffer_settings(false)
-		vim.notify("ZenMode On")
+		vim.notify("ZenMode Off")
 	end
 end
 
