@@ -1,14 +1,13 @@
--- ~/.config/nvim/lua/plugins/icons.lua
 return {
-	"echasnovski/mini.icons",
-	config = function()
-		require("mini.icons").setup({
+	{
+		"nvim-mini/mini.icons",
+		opts = {
 			extension = {
-				["test.ts"] = { glyph = "", hl = "MiniIconsOrange" },
-				["test.js"] = { glyph = "", hl = "MiniIconsOrange" },
-				["spec.ts"] = { glyph = "", hl = "MiniIconsOrange" },
-				["spec.js"] = { glyph = "", hl = "MiniIconsOrange" },
+				["test.ts"] = { glyph = "\u{f0096}", hl = "MiniIconsAzure" },
+				["test.js"] = { glyph = "\u{f0096}", hl = "MiniIconsYellow" },
+				["spec.ts"] = { glyph = "\u{f0096}", hl = "MiniIconsAzure" },
+				["spec.js"] = { glyph = "\u{f0096}", hl = "MiniIconsYellow" },
 			},
-		})
-	end,
+		},
+	},
 }

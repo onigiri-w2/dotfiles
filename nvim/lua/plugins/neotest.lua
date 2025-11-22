@@ -1,17 +1,16 @@
+-- テスト実行フレームワーク（adapters はキー名から自動 require される）
+-- see: https://www.lazyvim.org/extras/test/core
+
 return {
-	"nvim-neotest/neotest",
-	dependencies = { "haydenmeade/neotest-jest" },
-	opts = function(_, opts)
-		table.insert(
-			opts.adapters,
-			require("neotest-jest")({
-				jestCommand = "npm test --",
-				jestConfigFile = "custom.jest.config.ts",
-				env = { CI = true },
-				cwd = function()
-					return vim.fn.getcwd()
-				end,
-			})
-		)
-	end,
+	{
+		"nvim-neotest/neotest",
+		dependencies = { "nvim-neotest/neotest-jest" },
+		opts = {
+			adapters = {
+				["neotest-jest"] = {
+					jestCommand = "npm test --",
+				},
+			},
+		},
+	},
 }

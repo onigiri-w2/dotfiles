@@ -19,28 +19,21 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
 	spec = {
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
-		-- { import = "lazyvim.plugins.extras.linting.eslint" },
-		-- { import = "lazyvim.plugins.extras.formatting.prettier" },
-		{ import = "lazyvim.plugins.extras.formatting.biome" },
-		{ import = "lazyvim.plugins.extras.lang.typescript" },
-		-- { import = "lazyvim.plugins.extras.lang.json" },
+
 		{ import = "lazyvim.plugins.extras.test.core" },
 		{ import = "lazyvim.plugins.extras.dap.core" },
-		-- { import = "lazyvim.plugins.extras.lang.markdown" },
 		{ import = "lazyvim.plugins.extras.lang.rust" },
+		{ import = "lazyvim.plugins.extras.lang.typescript" },
 		{ import = "lazyvim.plugins.extras.lang.tailwind" },
-		-- { import = "lazyvim.plugins.extras.coding.copilot" },
-		-- { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
-		-- { import = "lazyvim.plugins.extras.ui.mini-animate" },
-		-- { import = "lazyvim.plugins.extras.coding.yanky" },
-		-- { import = "lazyvim.plugins.extras.editor.mini-files" },
-		-- { import = "lazyvim.plugins.extras.util.project" },
+		{ import = "lazyvim.plugins.extras.lang.go" },
+
+		{ import = "lazyvim.plugins.extras.ai.copilot" },
 		-- 順番めっちゃ大事。import pluginsは最後にすること。設定を上書きできなくなる。
 		{ import = "plugins" },
 	},
 	defaults = {
-		lazy = true,
-		version = "*",
+		lazy = true, -- 全プラグインをデフォルトで遅延読み込み
+		version = "*", -- 最新安定版タグを使用（version = false だと最新コミットを追う）
 	},
 	change_detection = {
 		notify = false,
