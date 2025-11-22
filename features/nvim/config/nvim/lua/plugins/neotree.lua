@@ -19,9 +19,14 @@ return {
 			enable_diagnostics = true,
 			filesystem = {
 				filtered_items = {
-					visible = true,
+					visible = false,
 					hide_dotfiles = false,
 					hide_gitignored = false,
+					hide_by_name = {
+						"node_modules",
+						".cache",
+						".git",
+					},
 				},
 				case_sensitive = true,
 				commands = {
