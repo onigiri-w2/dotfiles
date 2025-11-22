@@ -19,3 +19,6 @@
     df = diff
     lg = log --oneline --graph --decorate
     b = branch
+[user]
+	name = onigiri.w2
+	email = onigiri.w2@gmail.com

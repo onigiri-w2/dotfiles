@@ -27,7 +27,33 @@ hs.hotkey.bind({ "ctrl", "cmd" }, "l", keyCode("right", { "cmd" }), nil, keyCode
 
 -- window keymap
 local windowControler = require("functions.windowControler")
-hs.hotkey.bind({ "ctrl", "alt" }, "h", windowControler.moveLeft)
-hs.hotkey.bind({ "ctrl", "alt" }, "l", windowControler.moveRight)
+
+-- シングル/ダブルタップ対応のバインド
+local lastHTime = 0
+local lastLTime = 0
+local doubleTapInterval = 0.3
+
+hs.hotkey.bind({ "ctrl", "alt" }, "h", function()
+	local now = hs.timer.secondsSinceEpoch()
+	if (now - lastHTime) <= doubleTapInterval then
+		windowControler.moveLeftQuarter()
+		lastHTime = 0
+	else
+		windowControler.moveLeft()
+		lastHTime = now
+	end
+end)
+
+hs.hotkey.bind({ "ctrl", "alt" }, "l", function()
+	local now = hs.timer.secondsSinceEpoch()
+	if (now - lastLTime) <= doubleTapInterval then
+		windowControler.moveRightQuarter()
+		lastLTime = 0
+	else
+		windowControler.moveRight()
+		lastLTime = now
+	end
+end)
+
 hs.hotkey.bind({ "ctrl", "alt" }, "j", windowControler.toggleMax)
 hs.hotkey.bind({ "ctrl", "alt" }, "k", windowControler.center)

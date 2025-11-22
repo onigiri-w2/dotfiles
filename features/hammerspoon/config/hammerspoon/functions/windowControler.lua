@@ -39,6 +39,34 @@ function M.moveRight()
 	moveWindowWithoutAnimation(win, f)
 end
 
+-- ウィンドウを左1/4に移動
+function M.moveLeftQuarter()
+	local win = hs.window.focusedWindow()
+	local f = win:frame()
+	local screen = win:screen()
+	local max = screen:frame()
+
+	f.x = max.x
+	f.y = max.y
+	f.w = max.w / 4
+	f.h = max.h
+	moveWindowWithoutAnimation(win, f)
+end
+
+-- ウィンドウを右1/4に移動
+function M.moveRightQuarter()
+	local win = hs.window.focusedWindow()
+	local f = win:frame()
+	local screen = win:screen()
+	local max = screen:frame()
+
+	f.x = max.x + (max.w * 3 / 4)
+	f.y = max.y
+	f.w = max.w / 4
+	f.h = max.h
+	moveWindowWithoutAnimation(win, f)
+end
+
 -- ウィンドウを最大化
 function M.maximize()
 	local win = hs.window.focusedWindow()
