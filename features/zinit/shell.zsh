@@ -15,3 +15,6 @@ zinit light zdharma/history-search-multi-word
 # pure theme
 zinit ice pick"async.zsh" src"pure.zsh"
 zinit light sindresorhus/pure
+
+# 補完システムの初期化 & compauditチェックは無視
+autoload -Uz compinit && compinit -u
