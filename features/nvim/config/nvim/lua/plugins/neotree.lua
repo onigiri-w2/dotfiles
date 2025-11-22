@@ -11,6 +11,10 @@ return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		cmd = "Neotree",
+		init = function()
+			-- gitignored のファイルを薄い色で表示するよう変更
+			vim.api.nvim_set_hl(0, "NeoTreeGitIgnored", { fg = "#6c6c6c" })
+		end,
 		opts = {
 			enable_diagnostics = true,
 			filesystem = {
