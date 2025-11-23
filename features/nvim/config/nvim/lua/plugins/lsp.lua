@@ -17,6 +17,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		opts = function(_, opts)
+			-- vtsls のキーマップ変更
 			if opts.servers.vtsls then
 				opts.servers.vtsls.keys = vim.tbl_map(function(key)
 					if key[1] == "<leader>cM" then
@@ -25,6 +26,19 @@ return {
 					return key
 				end, opts.servers.vtsls.keys or {})
 			end
+
+			-- eslint, prettier のフォーマットを優先するためにTypeScript/JavaScript の LSP フォーマット無効化
+			local orig_on_attach = opts.servers.vtsls and opts.servers.vtsls.on_attach
+			if not opts.servers.vtsls then
+				opts.servers.vtsls = {}
+			end
+			opts.servers.vtsls.on_attach = function(client, bufnr)
+				client.server_capabilities.documentFormattingProvider = false
+				if orig_on_attach then
+					orig_on_attach(client, bufnr)
+				end
+			end
+
 			return opts
 		end,
 	},
