@@ -19,6 +19,7 @@
     df = diff
     lg = log --oneline --graph --decorate
     b = branch
+  psoh = push origin HEAD
 [user]
 	name = onigiri.w2
 	email = onigiri.w2@gmail.com
