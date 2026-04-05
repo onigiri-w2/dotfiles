@@ -7,7 +7,10 @@ return {
 			{ "<leader>cM", "<cmd>Mason<cr>", desc = "Mason" },
 		},
 		opts = {
-			ensure_installed = { "rust-analyzer" },
+			ensure_installed = {
+				-- "bacon",
+				-- "bacon-ls",
+			},
 		},
 	},
 
@@ -38,6 +41,52 @@ return {
 					orig_on_attach(client, bufnr)
 				end
 			end
+
+			-- =========================
+			-- LuaLS 設定（重要）
+			-- =========================
+			opts.servers.lua_ls = opts.servers.lua_ls or {}
+			opts.servers.lua_ls.settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim" }, -- ← vim設定コード警告対策
+					},
+					workspace = {
+						library = {
+							vim.env.VIMRUNTIME, -- ← Neovim API 補完強化
+						},
+					},
+					completion = {
+						callSnippet = "Replace",
+					},
+				},
+			}
+
+			-- -- Neovim 0.11はworkspace/diagnostic/refreshに未対応のため、ハンドラを自前で登録
+			-- vim.lsp.handlers["workspace/diagnostic/refresh"] = function(_, _, ctx)
+			-- 	for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+			-- 		local clients = vim.lsp.get_clients({ bufnr = bufnr, id = ctx.client_id })
+			-- 		if #clients > 0 then
+			-- 			vim.lsp.buf_request(bufnr, "textDocument/diagnostic", {
+			-- 				textDocument = vim.lsp.util.make_text_document_params(bufnr),
+			-- 			})
+			-- 		end
+			-- 	end
+			-- 	return vim.NIL
+			-- end
+			--
+			-- -- publishDiagnostics受信時にvirtual textの再描画を強制する
+			-- -- Neovim 0.11でdiagnosticデータ更新後にvirtual textがクリアされないバグへの対処
+			-- local orig_publish_handler = vim.lsp.handlers["textDocument/publishDiagnostics"]
+			-- vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+			-- 	orig_publish_handler(err, result, ctx, config)
+			-- 	vim.schedule(function()
+			-- 		local bufnr = vim.uri_to_bufnr(result.uri)
+			-- 		if vim.api.nvim_buf_is_loaded(bufnr) then
+			-- 			vim.diagnostic.show(nil, bufnr)
+			-- 		end
+			-- 	end)
+			-- end
 
 			return opts
 		end,

@@ -10,6 +10,7 @@ brew install ripgrep
 brew install fd
 brew install trash
 brew install lazygit
+brew install fzf
 
 # Setup: config をリンク
 SCRIPT_DIR="${0:A:h}"

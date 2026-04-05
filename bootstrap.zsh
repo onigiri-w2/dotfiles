@@ -1,12 +1,19 @@
 # bootstrap.zsh
 # .zshrc から source される唯一のファイル
+DOTFILES="${0:A:h}"
 
-DOTFILES="${0:A:h}"  # このファイルの親 = dotfiles/
-
-# グローバル shell 読み込み
 source "$DOTFILES/shell.zsh"
 
-# features の shell 読み込み
+# 1. zinit を先に初期化
+source "$DOTFILES/features/zinit/shell.zsh"
+
+# 2. 残りの features を読み込み
 for feature in "$DOTFILES/features/"*/; do
-    [[ -f "$feature/shell.zsh" ]] && source "$feature/shell.zsh"
+    [[ "$feature" == *"/zinit/" ]] && continue  # zinit はスキップ
+    if [[ -f "$feature/zinit.zsh" ]]; then
+        source "$feature/zinit.zsh"
+    fi
+    if [[ -f "$feature/shell.zsh" ]]; then
+        source "$feature/shell.zsh"
+    fi
 done
