@@ -12,7 +12,6 @@ require("hs.ipc")
 local appControler = require("functions.appControler")
 hs.hotkey.bind({ "ctrl", "cmd" }, "i", appControler.toggleApp("Wezterm"))
 -- hs.hotkey.bind({ "ctrl", "cmd" }, ";", appControler.openApp("Claude"))
-hs.hotkey.bind({ "ctrl", "cmd" }, "n", appControler.toggleApp("Cosense"))
 
 -- vim移動のkeymap
 local keyCode = require("functions.keyUtils").keyCode
@@ -57,3 +56,9 @@ end)
 
 hs.hotkey.bind({ "ctrl", "alt" }, "j", windowControler.toggleMax)
 hs.hotkey.bind({ "ctrl", "alt" }, "k", windowControler.center)
+
+-- ファイルが存在する場合のみ読み込む（エラー防止）
+local localConfig = hs.configdir .. "/local.lua"
+if hs.fs.attributes(localConfig) then
+	dofile(localConfig)
+end

@@ -5,3 +5,4 @@ export GO111MODULE=on
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/.goenv/shims:$PATH"
+export PATH="$PATH:$(go env GOPATH)/bin"
