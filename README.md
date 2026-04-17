@@ -78,6 +78,18 @@ cd ~/dotfiles
 ./setup.zsh
 ```
 
+### GitHub SSH 鍵のセットアップ（新マシン初回のみ）
+
+`.gitconfig` の `insteadOf` により HTTPS の GitHub URL は SSH に自動書換される。
+新マシンでは以下で鍵を作って GitHub に登録する（dotfiles 内に鍵自体は入れない）。
+
+```zsh
+ssh-keygen -t ed25519 -C "your@email" -f ~/.ssh/id_ed25519 -N ""
+gh auth refresh -h github.com -s admin:public_key   # scope 不足時のみ
+gh ssh-key add ~/.ssh/id_ed25519.pub --title "$(scutil --get ComputerName)"
+ssh -T git@github.com   # 疎通確認
+```
+
 ### feature の追加
 
 1. `features/{name}/` ディレクトリを作成

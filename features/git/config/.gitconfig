@@ -23,3 +23,6 @@
 [user]
 	name = onigiri.w2
 	email = onigiri.w2@gmail.com
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
