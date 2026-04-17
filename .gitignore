@@ -4,3 +4,5 @@ features/local/
 features/hammerspoon/config/hammerspoon/local.lua
 
 .gitconfig.local
+
+.claude/settings.local.json
