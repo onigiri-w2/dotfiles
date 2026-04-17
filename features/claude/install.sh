@@ -1,6 +1,7 @@
-brew install --cask claude
+# Claude Code CLI (native installer)
+command -v claude >/dev/null 2>&1 || curl -fsSL https://claude.ai/install.sh | bash
 
-# Setup: .claudeの中身を~/.claude 内にシンボリックリンク
+# Setup: .claude/skills を ~/.claude 内にシンボリックリンク
 SCRIPT_DIR="${0:A:h}"
 mkdir -p "$HOME/.claude"
-ln -sf "$SCRIPT_DIR/claude/skills" "$HOME/.claude/skills"
+ln -sfn "$SCRIPT_DIR/.claude/skills" "$HOME/.claude/skills"
