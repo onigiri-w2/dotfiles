@@ -92,16 +92,21 @@ ssh -T git@github.com   # 疎通確認
 
 ### 別マシンへの同期
 
-別 PC で `git pull` した後、新しく追加された install を反映させる:
+別 PC で `git pull` した後の同期は **Claude に頼むのが推奨**。
 
-```zsh
-cd ~/dotfiles
-git pull
-./sync.zsh
+```
+（Claude Code に向かって）「このPCを sync して」
 ```
 
-`sync.zsh` は全 feature の `install.zsh` を再実行する。install は冪等なので安全。
-（`setup.zsh` と違って Homebrew 自体のインストール、macOS defaults 適用、`.zshrc` 追記は行わない）
+Claude は以下を順に行う:
+
+1. `~/.dotfiles-last-sync` を baseline に、git diff で**消えた install 痕跡**（brew / curl / symlink / ランタイム等）を抽出
+2. 残存しているものを承認制で削除（cleanup）
+3. `./sync.zsh` を実行（全 `install.zsh` 再実行、冪等）
+4. `~/.dotfiles-last-sync` を現在の HEAD で更新
+
+直接 `./sync.zsh` を叩いても install は冪等に走るが、cleanup はスキップされる。  
+（前回 sync から進んでいる場合、起動時に Claude 経由を促す警告が出る）
 
 ### feature の追加
 

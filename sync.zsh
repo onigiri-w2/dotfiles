@@ -15,6 +15,19 @@ if ! command -v brew &> /dev/null; then
     exit 1
 fi
 
+# 前回 sync から進んでいたら cleanup の声がけ
+LAST_SYNC_FILE="$HOME/.dotfiles-last-sync"
+if [[ -f $LAST_SYNC_FILE ]]; then
+    LAST_SYNC=$(cat "$LAST_SYNC_FILE")
+    BEHIND=$(git -C "$DOTFILES" rev-list --count "${LAST_SYNC}..HEAD" 2>/dev/null || echo "?")
+    if [[ "$BEHIND" != "0" && "$BEHIND" != "?" ]]; then
+        echo "⚠️  $BEHIND commits since last sync. 削除された install の痕跡が残っているかも。"
+        echo "   Claude に「このPCを sync して」と頼むと cleanup → sync → marker 更新まで面倒見ます。"
+        echo "   このまま続行する場合は cleanup スキップ。5秒後に進めます (Ctrl-C で中断)"
+        sleep 5
+    fi
+fi
+
 for feature in "$DOTFILES/features/"*/; do
     [[ -f "$feature/install.zsh" ]] && source "$feature/install.zsh"
 done

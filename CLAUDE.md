@@ -9,6 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 - 初回セットアップ: `./setup.zsh` （Homebrew 導入 → 全 feature の `install.zsh` 実行 → macOS 設定 → `.zshrc` に `bootstrap.zsh` を追記）
+- 別マシンへの同期: `./sync.zsh` （全 `install.zsh` を再実行。冪等）
 - 単一 feature の再インストール: `source features/{name}/install.zsh`
 - シェル再読込: `source ~/.zshrc` (alias: `zshreload`)
 - ルートへ移動: `cddot`
@@ -57,3 +58,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ### Platform 設定
 
 `platform/macos.zsh` は `setup.zsh` が Darwin でのみ呼ぶ。Dock・キーリピート・Spotlight 無効化など `defaults write` 系の1回だけの適用。
+
+## Sync 運用（Claude が orchestrate する）
+
+別マシンで `git pull` した後の同期は、Claude が cleanup → sync → marker 更新の順で面倒見る。トリガーは「このPCを sync して」「dotfiles 同期して」等の依頼。
+
+### Marker
+
+`~/.dotfiles-last-sync` に「前回 sync 完了時の commit hash」を 1 行で保持（git 管理外、マシン別）。
+
+### 手順
+
+1. **Baseline 取得**: `cat ~/.dotfiles-last-sync` で baseline commit を取得。ファイル不在なら初回扱い → cleanup スキップして 4 へ。
+2. **削除痕跡の抽出**: `git log -p <baseline>..HEAD -- features/ setup.zsh` で**削除された行**と**削除された feature ディレクトリ全体**を集める。次のパターンを検出:
+   - `brew install <pkg>` / `brew install --cask <pkg>` → brew パッケージ
+   - `curl ... | bash|sh` → 外部インストーラ（rustup, bun, claude CLI 等）
+   - `git clone ... <path>` → 任意ディレクトリへの clone（zinit 等）
+   - `ln -sf[n] <src> <dst>` → symlink
+   - `goenv install <ver>` / `mise use ... <pkg>@<ver>` → ランタイム
+3. **残存確認 → 提案 → 実行**: 各痕跡について現存するか確認 (`brew list <pkg>`, `command -v <bin>`, `[[ -e <path> ]]`, `readlink <link>`)。残っているものをカテゴリ別にまとめてユーザに提示し、**承認制で**削除（`brew uninstall` / `rm -rf` / `unlink` 等）。判断に迷うものは飛ばして残す。
+4. **Sync 実行**: `./sync.zsh` を実行。
+5. **Marker 更新**: 全部成功したら `git rev-parse HEAD > ~/.dotfiles-last-sync`。途中で失敗・中断したら更新しない（次回 baseline が前のままになるよう）。
+
+### 注意
+
+- Brew パッケージは複数 feature が重複 install しうる（凝集性優先の設計）。削除候補が他の生きてる feature でも install されているかを確認してから消す。
+- Symlink を消す時は `readlink` でリンク先が dotfiles 配下かを確認してから（誤って手動設定を消さない）。
+- `features/local/` 配下の変更は git に出ないので、cleanup 対象から外れる。これは仕様。
