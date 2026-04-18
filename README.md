@@ -90,6 +90,19 @@ gh ssh-key add ~/.ssh/id_ed25519.pub --title "$(scutil --get ComputerName)"
 ssh -T git@github.com   # 疎通確認
 ```
 
+### 別マシンへの同期
+
+別 PC で `git pull` した後、新しく追加された install を反映させる:
+
+```zsh
+cd ~/dotfiles
+git pull
+./sync.zsh
+```
+
+`sync.zsh` は全 feature の `install.zsh` を再実行する。install は冪等なので安全。
+（`setup.zsh` と違って Homebrew 自体のインストール、macOS defaults 適用、`.zshrc` 追記は行わない）
+
 ### feature の追加
 
 1. `features/{name}/` ディレクトリを作成
