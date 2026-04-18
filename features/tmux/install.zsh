@@ -8,4 +8,4 @@ brew install tmuxinator
 # Setup: config をリンク
 SCRIPT_DIR="${0:A:h}"
 mkdir -p "$HOME/.config"
-ln -sf "$SCRIPT_DIR/config/tmux" "$HOME/.config/tmux"
+ln -sfn "$SCRIPT_DIR/config/tmux" "$HOME/.config/tmux"

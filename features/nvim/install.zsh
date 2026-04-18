@@ -15,4 +15,4 @@ brew install fzf
 # Setup: config をリンク
 SCRIPT_DIR="${0:A:h}"
 mkdir -p "$HOME/.config"
-ln -sf "$SCRIPT_DIR/config/nvim" "$HOME/.config/nvim"
+ln -sfn "$SCRIPT_DIR/config/nvim" "$HOME/.config/nvim"
