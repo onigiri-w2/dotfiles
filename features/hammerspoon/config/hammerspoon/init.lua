@@ -30,6 +30,7 @@ local windowControler = require("functions.windowControler")
 -- シングル/ダブルタップ対応のバインド
 local lastHTime = 0
 local lastLTime = 0
+local lastKTime = 0
 local doubleTapInterval = 0.3
 
 hs.hotkey.bind({ "ctrl", "alt" }, "h", function()
@@ -55,7 +56,17 @@ hs.hotkey.bind({ "ctrl", "alt" }, "l", function()
 end)
 
 hs.hotkey.bind({ "ctrl", "alt" }, "j", windowControler.toggleMax)
-hs.hotkey.bind({ "ctrl", "alt" }, "k", windowControler.center)
+
+hs.hotkey.bind({ "ctrl", "alt" }, "k", function()
+	local now = hs.timer.secondsSinceEpoch()
+	if (now - lastKTime) <= doubleTapInterval then
+		windowControler.centerSmall()
+		lastKTime = 0
+	else
+		windowControler.center()
+		lastKTime = now
+	end
+end)
 
 -- ファイルが存在する場合のみ読み込む（エラー防止）
 local localConfig = hs.configdir .. "/local.lua"

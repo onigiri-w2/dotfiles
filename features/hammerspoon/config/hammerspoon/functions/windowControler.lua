@@ -97,6 +97,22 @@ function M.center()
 	moveWindowWithoutAnimation(win, f)
 end
 
+-- ウィンドウを中央に小さめ配置
+function M.centerSmall()
+	local win = hs.window.focusedWindow()
+	local f = win:frame()
+	local screen = win:screen()
+	local max = screen:frame()
+
+	local width = max.w * 0.4
+	local height = max.h * 0.4
+	f.x = max.x + ((max.w - width) / 2)
+	f.y = max.y + ((max.h - height) / 2)
+	f.w = width
+	f.h = height
+	moveWindowWithoutAnimation(win, f)
+end
+
 local originalFrames = {}
 function M.toggleMax()
 	local win = hs.window.focusedWindow()
