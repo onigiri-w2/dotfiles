@@ -113,6 +113,91 @@ function M.centerSmall()
 	moveWindowWithoutAnimation(win, f)
 end
 
+-- delta 分移動
+function M.moveBy(dx, dy)
+	local win = hs.window.focusedWindow()
+	if not win then
+		return
+	end
+	local f = win:frame()
+	f.x = f.x + dx
+	f.y = f.y + dy
+	moveWindowWithoutAnimation(win, f)
+end
+
+-- delta 分リサイズ (右下角を動かすイメージ)
+function M.resizeBy(dw, dh)
+	local win = hs.window.focusedWindow()
+	if not win then
+		return
+	end
+	local f = win:frame()
+	f.w = math.max(100, f.w + dw)
+	f.h = math.max(100, f.h + dh)
+	moveWindowWithoutAnimation(win, f)
+end
+
+-- 四隅 1/4 (画面の縦横を半分にしたエリア)
+local function moveToQuadrant(xRatio, yRatio)
+	local win = hs.window.focusedWindow()
+	if not win then
+		return
+	end
+	local f = win:frame()
+	local max = win:screen():frame()
+	f.w = max.w / 2
+	f.h = max.h / 2
+	f.x = max.x + max.w * xRatio
+	f.y = max.y + max.h * yRatio
+	moveWindowWithoutAnimation(win, f)
+end
+
+function M.moveTopLeftQuarter()
+	moveToQuadrant(0, 0)
+end
+
+function M.moveTopRightQuarter()
+	moveToQuadrant(0.5, 0)
+end
+
+function M.moveBottomLeftQuarter()
+	moveToQuadrant(0, 0.5)
+end
+
+function M.moveBottomRightQuarter()
+	moveToQuadrant(0.5, 0.5)
+end
+
+-- サイズ維持で画面中央にスナップ
+function M.snapCenter()
+	local win = hs.window.focusedWindow()
+	if not win then
+		return
+	end
+	local f = win:frame()
+	local max = win:screen():frame()
+	f.x = max.x + (max.w - f.w) / 2
+	f.y = max.y + (max.h - f.h) / 2
+	moveWindowWithoutAnimation(win, f)
+end
+
+-- 隣のディスプレイへ移動
+function M.moveToNextScreen()
+	local win = hs.window.focusedWindow()
+	if not win then
+		return
+	end
+	win:moveToScreen(win:screen():next())
+end
+
+function M.moveToPreviousScreen()
+	local win = hs.window.focusedWindow()
+	if not win then
+		return
+	end
+	win:moveToScreen(win:screen():previous())
+end
+
 local originalFrames = {}
 function M.toggleMax()
 	local win = hs.window.focusedWindow()

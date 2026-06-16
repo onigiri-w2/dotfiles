@@ -68,6 +68,10 @@ hs.hotkey.bind({ "ctrl", "alt" }, "k", function()
 	end
 end)
 
+-- Window Mode (modal): ctrl+alt+; で突入、esc/q/return で抜ける
+local windowMode = require("functions.windowMode")
+windowMode.setup({ "ctrl", "alt" }, ";")
+
 -- ファイルが存在する場合のみ読み込む（エラー防止）
 local localConfig = hs.configdir .. "/local.lua"
 if hs.fs.attributes(localConfig) then
