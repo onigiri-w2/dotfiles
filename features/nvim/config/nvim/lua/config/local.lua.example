@@ -1,0 +1,11 @@
+-- このマシン固有の Neovim 設定（git 管理外）
+--
+-- 使い方:
+--   cp local.lua.example local.lua
+--   この PC だけに効かせたい設定を local.lua に書く。
+--
+-- config/lazy.lua の先頭で `pcall(require, "config.local")` により
+-- lazy.setup の前に読み込まれる。プラグインの有効/無効はここで切り替えられる。
+
+-- Codeium をこの PC では無効化する（デフォルトは有効）
+vim.g.enable_codeium = false

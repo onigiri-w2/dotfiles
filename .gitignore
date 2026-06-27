@@ -2,6 +2,7 @@
 
 features/local/
 features/hammerspoon/config/hammerspoon/local.lua
+features/nvim/config/nvim/lua/config/local.lua
 
 .gitconfig.local
 
