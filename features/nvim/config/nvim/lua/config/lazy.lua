@@ -27,6 +27,7 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.lang.tailwind" },
 		{ import = "lazyvim.plugins.extras.lang.go" },
 
+		{ import = "lazyvim.plugins.extras.ai.codeium" },
 		-- 順番めっちゃ大事。import pluginsは最後にすること。設定を上書きできなくなる。
 		{ import = "plugins" },
 	},

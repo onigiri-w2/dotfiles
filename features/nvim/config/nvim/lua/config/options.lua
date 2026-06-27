@@ -58,6 +58,9 @@ vim.filetype.add({
 	},
 })
 
+-- LazyVim AI Settings
+vim.g.ai_cmp = false -- Codeium をインライン補完（ghost text）で使用。blink.cmp 連携は無効
+
 -- Lazyvim rust settings
 vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
 -- vim.g.lazyvim_rust_diagnostics = "bacon-ls"  -- bacon-ls を使用する場合は Mason でインストールしてから有効化
