@@ -11,6 +11,24 @@ return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		cmd = "Neotree",
+		keys = {
+			-- LazyVim デフォルトの定義に reveal = true を追加した上書き。
+			-- 開いたとき常に現在ファイルの位置にカーソルが合うようにする。
+			{
+				"<leader>fe",
+				function()
+					require("neo-tree.command").execute({ toggle = true, dir = LazyVim.root(), reveal = true })
+				end,
+				desc = "Explorer NeoTree (Root Dir)",
+			},
+			{
+				"<leader>fE",
+				function()
+					require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd(), reveal = true })
+				end,
+				desc = "Explorer NeoTree (cwd)",
+			},
+		},
 		init = function()
 			-- gitignored のファイルを薄い色で表示するよう変更
 			vim.api.nvim_set_hl(0, "NeoTreeGitIgnored", { fg = "#6c6c6c" })
@@ -40,6 +58,8 @@ return {
 		opts = {
 			enable_diagnostics = true,
 			filesystem = {
+				-- ツリーを開いたままバッファを切り替えたとき、カーソルを現在ファイルに追従させる
+				follow_current_file = { enabled = true },
 				filtered_items = {
 					visible = false,
 					hide_dotfiles = false,
