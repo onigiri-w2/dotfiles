@@ -8,6 +8,12 @@
 # - macOS defaults 適用は行わない
 # - .zshrc への bootstrap 追記は行わない
 
+# zsh 専用（${0:A:h} 等を使う）。sh 等で実行されたら明示的に弾く。
+if [ -z "$ZSH_VERSION" ]; then
+  echo "sync.zsh は zsh で実行してください: ./sync.zsh（または zsh sync.zsh）" >&2
+  exit 1
+fi
+
 DOTFILES="${0:A:h}"
 
 if ! command -v brew &> /dev/null; then

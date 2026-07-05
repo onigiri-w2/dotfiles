@@ -3,6 +3,12 @@
 # dotfiles セットアップ
 # 使い方: ./setup.zsh
 
+# zsh 専用（${0:A:h} 等を使う）。sh 等で実行されたら明示的に弾く。
+if [ -z "$ZSH_VERSION" ]; then
+  echo "setup.zsh は zsh で実行してください: ./setup.zsh（または zsh setup.zsh）" >&2
+  exit 1
+fi
+
 DOTFILES="${0:A:h}"
 
 # Homebrew
