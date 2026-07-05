@@ -14,6 +14,28 @@ return {
 		init = function()
 			-- gitignored のファイルを薄い色で表示するよう変更
 			vim.api.nvim_set_hl(0, "NeoTreeGitIgnored", { fg = "#6c6c6c" })
+
+			-- ディレクトリ指定で nvim を開いたとき neo-tree を lazy-load する。
+			-- LazyVim の neo-tree extra が本来 init で登録している autocmd の再定義。
+			-- lazy.nvim では init は「マージ」ではなく「上書き」なので、ここで init を
+			-- 定義すると LazyVim 側の init が丸ごと消え、この hijack が失われる。
+			-- これが無いと `nvim <dir>/` でディレクトリ buffer が listed のまま残り、
+			-- bufferline に閉じられないタブとして居座る。
+			vim.api.nvim_create_autocmd("BufEnter", {
+				group = vim.api.nvim_create_augroup("Neotree_start_directory", { clear = true }),
+				desc = "Start Neo-tree with directory",
+				once = true,
+				callback = function()
+					if package.loaded["neo-tree"] then
+						return
+					else
+						local stats = vim.uv.fs_stat(vim.fn.argv(0))
+						if stats and stats.type == "directory" then
+							require("neo-tree")
+						end
+					end
+				end,
+			})
 		end,
 		opts = {
 			enable_diagnostics = true,
