@@ -61,6 +61,11 @@ vim.filetype.add({
 -- LazyVim AI Settings
 vim.g.ai_cmp = false -- Codeium をインライン補完（ghost text）で使用。blink.cmp 連携は無効
 
+-- LazyVim picker settings
+-- install_version 7 の既存インストールは後方互換で fzf-lua が picker になるため、
+-- snacks.picker を明示指定（frecency / smart picker を全 picker で使うため）。
+vim.g.lazyvim_picker = "snacks"
+
 -- Lazyvim rust settings
 vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
 -- vim.g.lazyvim_rust_diagnostics = "bacon-ls"  -- bacon-ls を使用する場合は Mason でインストールしてから有効化
