@@ -4,12 +4,12 @@ vim.opt.fileencoding = "utf-8" -- ファイル保存時のエンコーディン�
 
 -- UI Settings
 vim.opt.number = true -- 行番号を表示
-vim.opt.relativenumber = false -- 相対行番号を無効化（パフォーマンス重視）
+vim.opt.relativenumber = false -- 相対行番号を無効化（好み）
 vim.opt.title = true -- ウィンドウタイトルにファイル名を表示
 vim.opt.showcmd = true -- 入力中のコマンドを表示
 vim.opt.cmdheight = 0 -- コマンドラインを必要時のみ表示
 vim.opt.laststatus = 0 -- ステータスラインを無効化
-vim.opt.scrolloff = 3 -- カーソルの上下に最低3行の余白を保持（パフォーマンス重視）
+vim.opt.scrolloff = 3 -- カーソルの上下に最低3行の余白を保持
 
 -- Indentation Settings
 vim.opt.autoindent = true -- 自動インデントを有効化
@@ -44,8 +44,8 @@ vim.opt.shell = "zsh" -- 外部コマンド実行時のシェルをzshに設定
 vim.opt.updatetime = 300 -- カーソルイベント頻度を下げる (was 100)
 vim.opt.redrawtime = 1500 -- faster redraw timeout
 vim.opt.lazyredraw = false -- noice.nvimとの互換性のため無効化
-vim.opt.ttyfast = true -- 高速ターミナル接続を前提とした最適化
-vim.opt.synmaxcol = 200 -- 200文字以降はシンタックスハイライト無効
+-- ttyfast は Neovim では常時有効（no-op）なので設定しない
+vim.opt.synmaxcol = 500 -- この桁以降はシンタックスハイライト無効（長い行での重さ対策）
 vim.opt.cursorline = false -- カーソル行ハイライト無効化
 vim.opt.timeoutlen = 1000
 vim.opt.ttimeoutlen = 0

@@ -3,30 +3,35 @@ local keymap = vim.keymap
 -- LazyVim のデフォルトkeymapsを一部消去
 -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 ------------------------------------
-keymap.del("n", "<leader>l")
-keymap.del("n", "<leader>L")
-keymap.del("n", "<leader>-")
-keymap.del("n", "<leader>|")
+-- LazyVim 側の keymap 変更で対象が存在しなくても起動を止めないよう pcall で囲む
+local function safe_del(mode, lhs)
+	pcall(keymap.del, mode, lhs)
+end
 
-keymap.del("n", "<leader><tab>l")
-keymap.del("n", "<leader><tab>o")
-keymap.del("n", "<leader><tab>f")
-keymap.del("n", "<leader><tab><tab>")
-keymap.del("n", "<leader><tab>]")
-keymap.del("n", "<leader><tab>d")
-keymap.del("n", "<leader><tab>[")
+safe_del("n", "<leader>l")
+safe_del("n", "<leader>L")
+safe_del("n", "<leader>-")
+safe_del("n", "<leader>|")
 
-keymap.del("n", "<C-h>")
-keymap.del("n", "<C-j>")
-keymap.del("n", "<C-k>")
-keymap.del("n", "<C-l>")
+safe_del("n", "<leader><tab>l")
+safe_del("n", "<leader><tab>o")
+safe_del("n", "<leader><tab>f")
+safe_del("n", "<leader><tab><tab>")
+safe_del("n", "<leader><tab>]")
+safe_del("n", "<leader><tab>d")
+safe_del("n", "<leader><tab>[")
 
-keymap.del("n", "<C-Up>")
-keymap.del("n", "<C-Down>")
-keymap.del("n", "<C-Left>")
-keymap.del("n", "<C-Right>")
+safe_del("n", "<C-h>")
+safe_del("n", "<C-j>")
+safe_del("n", "<C-k>")
+safe_del("n", "<C-l>")
 
-keymap.del("n", "f")
+safe_del("n", "<C-Up>")
+safe_del("n", "<C-Down>")
+safe_del("n", "<C-Left>")
+safe_del("n", "<C-Right>")
+
+safe_del("n", "f")
 
 ------------------------------------
 -- ユーザー独自設定
