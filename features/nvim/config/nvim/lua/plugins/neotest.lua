@@ -6,7 +6,6 @@ return {
 		"nvim-neotest/neotest",
 		dependencies = {
 			"nvim-neotest/neotest-jest",
-			-- "marilari88/neotest-vitest",
 			-- NOTE: neotest-vitest は package.json のないプロジェクト（Rust等）で
 			-- rootPath が nil になりクラッシュするため無効化中
 			-- see: https://github.com/marilari88/neotest-vitest/issues
