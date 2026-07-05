@@ -27,8 +27,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `zinit.zsh` — zinit プラグイン定義（`bootstrap.zsh` が `shell.zsh` より先に source する）。
 - `config/` — 設定ファイル実体。`install.zsh` が `~/.config/{name}` 等へ symlink する。
 
-例外: `features/claude/install.sh` は `.sh` 拡張子で、`~/.claude/skills` への symlink もここで作る。
-
 ### Load order (bootstrap.zsh)
 
 1. `shell.zsh` (グローバル設定・Homebrew shellenv)
