@@ -8,8 +8,10 @@ brew install tmuxinator
 brew install fzf        # prefix + s のセッション切替 (session-switcher.sh)
 brew install lazygit    # prefix + g の lazygit ポップアップ
 brew install lazydocker # prefix + D の lazydocker ポップアップ
+brew install git-delta  # lazygit の diff pager (config/lazygit/config.yml)
 
 # Setup: config をリンク
 SCRIPT_DIR="${0:A:h}"
 mkdir -p "$HOME/.config"
 ln -sfn "$SCRIPT_DIR/config/tmux" "$HOME/.config/tmux"
+ln -sfn "$SCRIPT_DIR/config/lazygit" "$HOME/.config/lazygit"

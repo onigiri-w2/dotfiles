@@ -1,6 +1,17 @@
 [core]
     excludesfile = ~/.gitignore_global
     editor = nvim
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+# AI が書いたコード等をじっくり読む用の diff pager 設定。
+# side-by-side は GitHub の PR diff に近い見た目でレビューしやすい。
+[delta]
+    navigate = true
+    line-numbers = true
+    side-by-side = true
 
 [init]
     defaultBranch = main

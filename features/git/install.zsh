@@ -4,6 +4,7 @@
 # Install
 brew install git
 brew install gh
+brew install git-delta # git diff 用のシンタックスハイライトpager（.gitconfig の core.pager）
 
 # Setup: config をリンク
 SCRIPT_DIR="${0:A:h}"

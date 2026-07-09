@@ -1,0 +1,6 @@
+# tmux.conf の `bind g` から開く lazygit の設定。diff 表示を delta に委譲して
+# AI が書いたコード等をレビューしやすくする（.gitconfig 側の [delta] 設定と揃える）。
+git:
+  paging:
+    colorArg: always
+    pager: delta --paging=never --side-by-side
