@@ -1,0 +1,33 @@
+{
+  "sandbox": {
+    "autoAllowBashIfSandboxed": true,
+    "filesystem": {
+      "allowWrite": [
+        "~/.safe-chain",
+        "~/.npm",
+        "~/.cache",
+        "/private/tmp"
+      ]
+    },
+    "network": {
+      "allowedDomains": [
+        "registry.npmjs.org",
+        "*.npmjs.org",
+        "proxy.golang.org",
+        "sum.golang.org",
+        "golang.org",
+        "fastdl.mongodb.org"
+      ],
+      "allowMachLookup": [
+        "com.apple.trustd.agent"
+      ],
+      "allowAllUnixSockets": true
+    },
+    "excludedCommands": [
+      "op *",
+      "docker *",
+      "gpg *",
+      "git *"
+    ]
+  }
+}
