@@ -8,3 +8,6 @@ features/tmux/config/tmux/local.conf
 .gitconfig.local
 
 .claude/settings.local.json
+
+# TPM プラグインは ~/.tmux/plugins に置く。万一 XDG 経由でここに落ちても無視
+features/tmux/config/tmux/plugins/
