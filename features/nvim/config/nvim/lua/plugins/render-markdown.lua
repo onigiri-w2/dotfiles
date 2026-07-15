@@ -1,5 +1,6 @@
--- markdown を「自動描画せず」トグルで 生 markdown ⇄ インライン描画 を切り替える。
--- 既存の <leader>u トグル群（uz: zenmode, uw: wrap）に合わせ <leader>um に割当。
+-- markdown を開いたら常時インライン描画する。
+-- カーソル行を raw に戻す anti_conceal は無効化し、normal モード中は全行描画を維持。
+-- insert モードに入るとバッファ全体が raw になる（render_modes のデフォルトに 'i' が無いため）。
 --
 -- なぜ LazyExtras (lang.markdown) を使わないか:
 --   markdown の LazyExtra は renderer 単体では選べず、preview + marksman LSP +
@@ -17,7 +18,8 @@ return {
 			"nvim-mini/mini.icons",
 		},
 		opts = {
-			enabled = false, -- 開いても自動描画しない。<leader>um でトグルして初めて描画
+			-- カーソル行を raw 表示に戻さない（insert モードまで描画を維持）
+			anti_conceal = { enabled = false },
 			-- 見た目の微調整（LazyVim の markdown extra 準拠）
 			code = {
 				sign = false,
@@ -29,15 +31,5 @@ return {
 				icons = {},
 			},
 		},
-		config = function(_, opts)
-			require("render-markdown").setup(opts)
-			-- 生 ⇄ 描画 のトグル。状態は render-markdown の get/set で管理され
-			-- which-key に on/off が表示される。
-			Snacks.toggle({
-				name = "Render Markdown",
-				get = require("render-markdown").get,
-				set = require("render-markdown").set,
-			}):map("<leader>um")
-		end,
 	},
 }
