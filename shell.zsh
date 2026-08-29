@@ -27,6 +27,10 @@ setopt hist_ignore_dups     # 重複実行を記録しない
 export DOTFILES="${DOTFILES:-$HOME/dotfiles}"
 export KEYTIMEOUT=1  # vim の escape 対策
 
+# ユーザ配下のバイナリ置き場。特定 feature のものではないのでここに置く。
+# features/claude が claude を、features/lang-python の uv が python を入れる。
+export PATH="$HOME/.local/bin:$PATH"
+
 # ============================================
 # Alias
 # ============================================
