@@ -1,2 +1,2 @@
-cask "arc"
+cask "thebrowsercompany-dia" # Dia
 cask "google-chrome"

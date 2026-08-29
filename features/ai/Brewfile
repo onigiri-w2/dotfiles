@@ -1,0 +1,9 @@
+# AI エージェント系。
+# ここに置くのは GUI アプリと、brew で入る CLI だけ。
+# Claude Code CLI は独自インストーラなので features/claude/install.zsh 側。
+# opencode の CLI も同様に独自インストーラ（~/.opencode/bin/opencode）で、
+# この cask は GUI アプリ (OpenCode.app) しか入れない。
+cask "claude"           # Claude Desktop（GUI）
+cask "opencode-desktop" # OpenCode Desktop（GUI）
+brew "pi-coding-agent"  # binary は `pi`
+brew "herdr"            # ターミナル常駐のエージェント multiplexer
