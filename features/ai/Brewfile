@@ -6,4 +6,3 @@
 cask "claude"           # Claude Desktop（GUI）
 cask "opencode-desktop" # OpenCode Desktop（GUI）
 brew "pi-coding-agent"  # binary は `pi`
-brew "herdr"            # ターミナル常駐のエージェント multiplexer

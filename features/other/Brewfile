@@ -9,11 +9,6 @@ brew "peco" # for ccc
 brew "hunk"
 brew "yt-dlp"
 
-# PDF / 図版
-brew "ghostscript" # `gs`
-brew "poppler"     # `pdftotext` `pdfinfo`
-brew "graphviz"    # `dot`
-
 # macOS apps
 cask "hyperkey"
 cask "alfred"
