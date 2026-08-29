@@ -5,8 +5,8 @@
 # npm が必要なので lang-node を先に保証（install は冪等）
 source "$DOTFILES/features/lang-node/install.zsh"
 
-# 本体をグローバル導入
-npm install -g @aikidosec/safe-chain
+# 本体をグローバル導入（毎 sync で npm が走ると出力が出るので導入済みなら skip）
+command -v safe-chain >/dev/null || npm install -g @aikidosec/safe-chain
 
 # mise で node を入れ直しても safe-chain が消えないよう、
 # default パッケージに登録（mise が新規 node 導入時に自動再インストールする）。冪等。
@@ -15,10 +15,13 @@ grep -qxF "@aikidosec/safe-chain" "$default_pkgs" 2>/dev/null \
   || echo "@aikidosec/safe-chain" >> "$default_pkgs"
 
 # シェルフック本体（~/.safe-chain/scripts/）と MITM スキャン用証明書（~/.safe-chain/certs/）を生成。
-safe-chain setup
+# 生成済みなら skip（setup は毎回「Please restart your terminal」まで出力するため）。
+if [[ ! -f "$HOME/.safe-chain/scripts/init-posix.sh" ]]; then
+  safe-chain setup
 
-# setup は ~/.zshrc に init スクリプトの source 行を直接追記するが、
-# dotfiles ではシェル読み込みを features/safe-chain/shell.zsh に一元化するため、その追記行を除去する。
-sed -i '' '/Safe-chain.*initialization script/d' "$HOME/.zshrc"
+  # setup は ~/.zshrc に init スクリプトの source 行を直接追記するが、
+  # dotfiles ではシェル読み込みを features/safe-chain/shell.zsh に一元化するため、その追記行を除去する。
+  sed -i '' '/Safe-chain.*initialization script/d' "$HOME/.zshrc"
+fi
 
 # uninstall は自動化しない（dotfiles 方針）。手動で消すときは `safe-chain teardown` を実行。

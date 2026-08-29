@@ -26,7 +26,7 @@ ln -sf "$DOTFILES/config/brew.env" "$HOME/.homebrew/brew.env"
 # install.zsh より先に走らせる（install.zsh は jq / goenv / mise 等に依存するため）。
 # --no-upgrade: 従来の `brew install`（既にあれば何もしない）の挙動を保つ。
 # bundle は既定で outdated を upgrade するが、更新は `brew upgrade` で明示的にやりたい。
-cat "$DOTFILES/features/"*/Brewfile | brew bundle install --no-upgrade --file=-
+cat "$DOTFILES/features/"*/Brewfile | brew bundle install --no-upgrade --quiet --file=-
 
 # 全 features インストール
 for feature in "$DOTFILES/features/"*/; do

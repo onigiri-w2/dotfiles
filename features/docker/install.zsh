@@ -6,9 +6,11 @@
 # 開く操作自体が不要になる。
 # パッケージは Brewfile を参照。
 
-# docker 系 formula の bin を Docker Desktop 由来の symlink より優先させる
-# （既に symlink があると brew は警告して link をスキップするため）
-brew link --overwrite docker docker-compose docker-buildx
+# docker 系 formula の bin を Docker Desktop 由来の symlink より優先させる。
+# 既に Cellar を指しているなら何もしない（毎回叩くと "Already linked" 警告が出る）。
+for f in docker docker-compose docker-buildx; do
+	[[ "$(readlink "/opt/homebrew/bin/$f")" == *"/Cellar/$f/"* ]] || brew link --overwrite "$f"
+done
 
 # docker compose / buildx を CLI プラグインとして認識させる + credsStore を
 # Docker Desktop 非依存の osxkeychain に切替（既存の設定は壊さずマージ）
@@ -18,11 +20,15 @@ jq '.cliPluginsExtraDirs = ["/opt/homebrew/lib/docker/cli-plugins"] | .credsStor
 	echo '{"cliPluginsExtraDirs":["/opt/homebrew/lib/docker/cli-plugins"],"credsStore":"osxkeychain"}' >~/.docker/config.json.tmp
 mv ~/.docker/config.json.tmp ~/.docker/config.json
 
-# colima をバックグラウンドサービス化してログイン時に自動起動させる
+# colima をバックグラウンドサービス化してログイン時に自動起動させる。
+# 登録は一度きりでよく、既に LaunchAgent が居る状態で再実行すると
+# launchctl bootstrap が二重登録で "Input/output error" を返すため plist の有無で判定する。
 # `brew services` は TMUX 環境変数が立っていると「tmux 内では実行不可」と
 # して拒否する（tmux 内で実行してこの制約に一度ハマった）ため、
 # env -u TMUX で一時的に隠して実行する。
-env -u TMUX brew services start colima
+if [[ ! -f "$HOME/Library/LaunchAgents/homebrew.mxcl.colima.plist" ]]; then
+	env -u TMUX brew services start colima
+fi
 
 # 旧 Docker Desktop アプリが残っていれば削除を試みる（daemon の二重管理を
 # 避けるため）。ただし管理者権限が無いアカウントでは cask uninstall が

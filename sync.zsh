@@ -32,7 +32,7 @@ ln -sf "$DOTFILES/config/brew.env" "$HOME/.homebrew/brew.env"
 # --no-upgrade: 従来の `brew install`（既にあれば何もしない）の挙動を保つ。
 # bundle は既定で outdated を upgrade するが、更新は `brew upgrade` で明示的にやりたい。
 BREWFILE="$(cat "$DOTFILES/features/"*/Brewfile)"
-print -r -- "$BREWFILE" | brew bundle install --no-upgrade --file=-
+print -r -- "$BREWFILE" | brew bundle install --no-upgrade --quiet --file=-
 
 for feature in "$DOTFILES/features/"*/; do
     [[ -f "$feature/install.zsh" ]] && source "$feature/install.zsh"
