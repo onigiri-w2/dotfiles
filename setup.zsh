@@ -17,6 +17,11 @@ if ! command -v brew &> /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+# Homebrew 全体の設定を dotfiles 管理下に置く（brew bundle install より前に必要）。
+# シェルを介さないので、対話シェルでも setup.zsh 内でも同じ設定が効く。
+mkdir -p "$HOME/.homebrew"
+ln -sf "$DOTFILES/config/brew.env" "$HOME/.homebrew/brew.env"
+
 # 全 feature の Brewfile を連結して brew パッケージを導入。
 # install.zsh より先に走らせる（install.zsh は jq / goenv / mise 等に依存するため）。
 # --no-upgrade: 従来の `brew install`（既にあれば何もしない）の挙動を保つ。

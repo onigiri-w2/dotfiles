@@ -53,6 +53,8 @@ dotfiles/
 ├── setup.zsh         # 初回セットアップ
 ├── sync.zsh          # 2回目以降の同期 + cleanup 候補の提示
 ├── shell.zsh         # グローバルなシェル設定
+├── config/
+│   └── brew.env      # Homebrew 全体の設定（cask の導入先など）
 ├── platform/
 │   └── macos.zsh     # macOS 固有設定
 └── features/         # 機能ごとのモジュール

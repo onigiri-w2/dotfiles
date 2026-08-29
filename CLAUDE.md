@@ -35,6 +35,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **setup.zsh / sync.zsh**: Brewfile の bundle install が先、`install.zsh` ループが後。
 `install.zsh` は `jq` / `goenv` / `mise` 等の brew パッケージに依存するのでこの順序が必要。
 
+その前に `config/brew.env` を `~/.homebrew/brew.env` へ symlink する。ここに置くのは
+`HOMEBREW_CASK_OPTS`（cask を `~/Applications` に入れる設定）など Homebrew 全体の挙動。
+**bundle install より前でなければ意味が無い**（新マシンでは cask が `/Applications` に入ってしまう）。
+シェルを介さないので対話シェルの手打ちにも効く。`brew.env` はシェル変数を展開しないが、
+`~` は Homebrew 自身が `--appdir` で展開する。
+
 **bootstrap.zsh**:
 
 1. `shell.zsh` (グローバル設定・Homebrew shellenv)
