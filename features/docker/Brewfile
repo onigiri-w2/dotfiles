@@ -1,0 +1,5 @@
+brew "colima"
+brew "docker"                   # CLI のみ（daemon は colima が提供）
+brew "docker-compose"
+brew "docker-buildx"
+brew "docker-credential-helper" # keychain 連携（旧 Docker Desktop の credsStore の代替）

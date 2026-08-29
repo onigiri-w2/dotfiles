@@ -1,0 +1,20 @@
+# CLI tools
+brew "direnv"
+brew "watchman"
+brew "eza"
+brew "trash"
+brew "bat"
+brew "jq"
+brew "peco" # for ccc
+brew "hunk"
+
+# macOS apps
+cask "hyperkey"
+cask "alfred"
+cask "clipy"
+cask "alt-tab"
+cask "spotify"
+cask "iina"
+cask "slack"
+cask "figma"
+cask "opensuperwhisper"

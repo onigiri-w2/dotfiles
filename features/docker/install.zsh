@@ -1,19 +1,13 @@
-# docker を このPCにインストール
-# 1回だけ実行
+# docker を このPCにセットアップする
 #
 # Docker Desktop（GUIアプリ）を毎回開かないと daemon が立ち上がらないのが
 # だるいので、colima（ヘッドレス VM）+ 素の docker CLI に置き換える。
 # colima は brew services でログイン時に自動起動するため、GUI を手動で
 # 開く操作自体が不要になる。
+# パッケージは Brewfile を参照。
 
-brew install colima
-brew install docker                   # CLI のみ（daemon は colima が提供）
-brew install docker-compose
-brew install docker-buildx
-brew install docker-credential-helper # keychain 連携（旧 Docker Desktop の credsStore の代替）
-
-# 新しく入れた docker 系 formula の bin を Docker Desktop 由来の symlink より
-# 優先させる（既に symlink があると brew は警告して link をスキップするため）
+# docker 系 formula の bin を Docker Desktop 由来の symlink より優先させる
+# （既に symlink があると brew は警告して link をスキップするため）
 brew link --overwrite docker docker-compose docker-buildx
 
 # docker compose / buildx を CLI プラグインとして認識させる + credsStore を

@@ -1,14 +1,5 @@
-# tmux を このPCにインストール & setup する
-# 1回だけ実行
-
-# Install
-brew install tmux
-brew install tmuxinator
-# tmux.conf が依存する外部コマンド（凝集性優先で他 feature と重複してもよい）
-brew install fzf        # prefix + s のセッション切替 (session-switcher.sh)
-brew install lazygit    # prefix + g の lazygit ポップアップ
-brew install lazydocker # prefix + D の lazydocker ポップアップ
-brew install git-delta  # lazygit の diff pager (config/lazygit/config.yml)
+# tmux を このPCにセットアップする
+# パッケージは Brewfile を参照。
 
 # TPM (tmux plugin manager) を clone。
 # tmux.conf 末尾の `run '.../tpm/tpm'` が @plugin を読み込む。

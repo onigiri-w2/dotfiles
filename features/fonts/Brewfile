@@ -1,0 +1,2 @@
+# Nerd Font 化された Monaspace。upstream で font-monaspace-nerd-font から改名された。
+cask "font-monaspice-nerd-font"

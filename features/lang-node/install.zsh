@@ -1,6 +1,4 @@
-# lang-node を このPCにインストール & setup する
-# 1回だけ実行
+# lang-node を このPCにセットアップする
+# パッケージ（mise）は Brewfile を参照。
 
-brew install mise
 mise use --global node@lts
-

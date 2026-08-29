@@ -17,6 +17,12 @@ if ! command -v brew &> /dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+# 全 feature の Brewfile を連結して brew パッケージを導入。
+# install.zsh より先に走らせる（install.zsh は jq / goenv / mise 等に依存するため）。
+# --no-upgrade: 従来の `brew install`（既にあれば何もしない）の挙動を保つ。
+# bundle は既定で outdated を upgrade するが、更新は `brew upgrade` で明示的にやりたい。
+cat "$DOTFILES/features/"*/Brewfile | brew bundle install --no-upgrade --file=-
+
 # 全 features インストール
 for feature in "$DOTFILES/features/"*/; do
     [[ -f "$feature/install.zsh" ]] && source "$feature/install.zsh"

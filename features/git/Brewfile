@@ -1,0 +1,3 @@
+brew "git"
+brew "gh"
+brew "git-delta" # git diff 用のシンタックスハイライトpager（.gitconfig の core.pager）

@@ -1,0 +1,5 @@
+brew "neovim" # `nvim` は alias。cleanup の照合が効くよう正式名で書く
+brew "ripgrep"
+brew "fd"
+brew "trash"
+brew "lazygit"

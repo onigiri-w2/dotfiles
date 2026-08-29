@@ -1,0 +1,7 @@
+brew "tmux"
+brew "tmuxinator"
+# tmux.conf が依存する外部コマンド（凝集性優先で他 feature と重複してもよい）
+brew "fzf"        # prefix + s のセッション切替 (session-switcher.sh)
+brew "lazygit"    # prefix + g の lazygit ポップアップ
+brew "lazydocker" # prefix + D の lazydocker ポップアップ
+brew "git-delta"  # lazygit の diff pager (config/lazygit/config.yml)
