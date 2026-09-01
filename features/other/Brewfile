@@ -5,7 +5,6 @@ brew "eza"
 brew "trash"
 brew "bat"
 brew "jq"
-brew "peco" # for ccc
 brew "hunk"
 brew "yt-dlp"
 

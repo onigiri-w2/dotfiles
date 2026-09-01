@@ -1,0 +1,2 @@
+# ccc（bin/ccc）が対話選択に使う
+brew "peco"

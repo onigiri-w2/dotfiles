@@ -14,6 +14,3 @@ alias rm='trash'
 
 # bat
 alias cat='bat'
-
-# path
-export PATH="${0:A:h}/bin:$PATH"
