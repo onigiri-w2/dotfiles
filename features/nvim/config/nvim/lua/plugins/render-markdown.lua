@@ -13,6 +13,9 @@ return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
 		ft = { "markdown", "codecompanion" },
+		keys = {
+			{ "<leader>um", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Render Markdown" },
+		},
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-mini/mini.icons",
