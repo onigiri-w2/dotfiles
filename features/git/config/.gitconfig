@@ -37,3 +37,9 @@
 
 [url "git@github.com:"]
 	pushInsteadOf = https://github.com/
+
+# マシン固有の上書き（git 管理外の実ファイル。無ければ無視される）。
+# 会社マシンでは [user] を会社名義にする等。上の設定を上書きするため末尾に置く。
+# dotfiles リポジトリ自体は features/git/install.zsh がリポジトリ単位で個人名義に固定する。
+[include]
+	path = ~/.gitconfig.local

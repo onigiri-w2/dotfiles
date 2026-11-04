@@ -5,6 +5,12 @@
 SCRIPT_DIR="${0:A:h}"
 ln -sf "$SCRIPT_DIR/config/.gitconfig" "$HOME/.gitconfig"
 
+# dotfiles リポジトリ自体は常に個人名義でコミットする。
+# ~/.gitconfig.local で会社名義に上書きしたマシンでも、リポジトリ単位の設定が優先される。
+DOTFILES_ROOT="${SCRIPT_DIR:h:h}"
+git -C "$DOTFILES_ROOT" config user.name "onigiri.w2"
+git -C "$DOTFILES_ROOT" config user.email "onigiri.w2@gmail.com"
+
 # ~/.gitignore_global はマシン所有の実ファイル（symlink にしない）。
 # マシン固有の無視パターンはこのファイルに直接追記してよく、git は excludesfile を
 # 毎コマンド読み直すので即反映される（dotfiles リポジトリも汚れない）。
