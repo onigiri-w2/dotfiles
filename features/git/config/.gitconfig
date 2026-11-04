@@ -36,4 +36,4 @@
 	email = onigiri.w2@gmail.com
 
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+	pushInsteadOf = https://github.com/

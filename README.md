@@ -79,8 +79,13 @@ cd ~/dotfiles
 
 ### GitHub SSH 鍵のセットアップ（新マシン初回のみ）
 
-`.gitconfig` の `insteadOf` により HTTPS の GitHub URL は SSH に自動書換される。
-新マシンでは以下で鍵を作って GitHub に登録する（dotfiles 内に鍵自体は入れない）。
+`.gitconfig` の `pushInsteadOf` により、HTTPS の GitHub URL は **push 時のみ** SSH に書き換わる。
+fetch / clone は HTTPS のままなので、鍵が無い新マシンでも `setup.zsh` の clone（zinit, tpm）や
+zinit プラグインの取得は通る（`insteadOf` だと全部 SSH になり、鍵登録前は失敗する）。
+private リポジトリを HTTPS URL で clone するときは `gh auth setup-git` を済ませるか SSH URL を使う。
+
+push には鍵が要るので、新マシンでは以下で鍵を作って GitHub に登録する（dotfiles 内に鍵自体は入れない）。
+`setup.zsh` の前後どちらでもよい。
 
 ```zsh
 ssh-keygen -t ed25519 -C "your@email" -f ~/.ssh/id_ed25519 -N ""
