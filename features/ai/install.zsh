@@ -11,9 +11,10 @@ if [[ ! -x "$HOME/.opencode/bin/opencode" ]]; then
 fi
 
 # kimi-code CLI (MoonshotAI): 公式インストーラ。~/.kimi-code/bin/kimi に単一バイナリを置く。
+# 旧 URL (code.kimi.com/install.sh) は legacy kimi-cli 用で、移行を促す対話プロンプトで 30 秒止まる。
 # 同ディレクトリに config.toml / credentials / sessions も作られるので消さないこと。
 if [[ ! -x "$HOME/.kimi-code/bin/kimi" ]]; then
-  curl -fsSL https://code.kimi.com/install.sh | bash
+  curl -fsSL https://code.kimi.com/kimi-code/install.sh | bash
 fi
 
 # インストーラは ~/.zshrc に PATH 追記するが、dotfiles ではシェル読み込みを
