@@ -27,6 +27,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `shell.zsh` — シェル起動ごとに `bootstrap.zsh` から source される。alias・環境変数・`eval` フック。
 - `zinit.zsh` — zinit プラグイン定義（`bootstrap.zsh` が `shell.zsh` より先に source する）。
 - `config/` — 設定ファイル実体。`install.zsh` が `~/.config/{name}` 等へ symlink する。
+- `Skillfile` — Claude Code の global スキル（外部 repo のもの）の宣言。1 行 `<owner/repo> <skill>[@ref]`。`@ref` で版を固定。全 feature 分の和集合を `features/claude/install.zsh` が `gh skill install` で入れる（無いものだけ）。
+
+### Claude Code の global スキル
+
+- `~/.claude/skills` → `features/claude/.claude/skills` の symlink（`features/claude/install.zsh` が張る）。
+- 自作スキル: このフォルダに置いてコミットする。
+- 外部スキル: `Skillfile` に書くだけ。中身はコミットしない。`install.zsh` が Skillfile から `features/claude/.claude/skills/.gitignore` を毎回作り直す（この `.gitignore` 自体も無視対象）。
+- 更新は `gh skill update --all` で明示的に行う（`brew upgrade` と同じ扱い）。`@ref` 付きは上がらない。
+- `sync.zsh` は「gh skill で入れた（source 記録のある）global スキル − Skillfile の宣言」を cleanup 候補に列挙する。残したいものは `features/local/Skillfile` へ。
 
 `Brewfile` だけで済む feature には `install.zsh` を置かない（例: `browser`, `fonts`, `other`）。
 

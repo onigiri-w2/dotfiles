@@ -1,0 +1,8 @@
+# Claude Code の global スキル（~/.claude/skills）の宣言。Brewfile と同じ考え方。
+# 書き方: <owner/repo> <skill>[@tag か commit SHA]
+#   @ を付けると版を止める（gh skill update でも上がらない）。付けなければ最新のタグ、無ければ main。
+# 入れる: features/claude/install.zsh（setup.zsh / sync.zsh から呼ばれる。既にあるものは触らない）
+# 更新:   gh skill update --all（手で叩く。brew upgrade と同じ扱い）
+# 他の feature や features/local/ に Skillfile を置いてもよい（全部の和集合が宣言）。
+
+nanaism/yomiyasu yomiyasu

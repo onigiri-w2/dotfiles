@@ -56,6 +56,17 @@ extra_casks=$(comm -23 \
 # ~/.hammerspoon 等の直貼りは対象外なので気になったら手で確認する。
 dangling=$(find "$HOME/.config" -maxdepth 1 -type l ! -exec test -e {} \; -print 2>/dev/null)
 
+# gh skill で入れた global スキル（source の記録があるもの）− 全 Skillfile の宣言。
+# 自作スキル（記録なし）は git で管理しているので対象外。
+extra_skills=""
+if command -v gh &> /dev/null; then
+    extra_skills=$(comm -23 \
+        <(gh skill list --scope user --agent claude-code --json skillName,sourceURL \
+            --jq '.[] | select(.sourceURL != "") | .skillName' 2>/dev/null | sort -u) \
+        <(cat "$DOTFILES/features/"*/Skillfile(N) /dev/null \
+            | awk '$1 !~ /^#/ && NF >= 2 { sub(/@.*/, "", $2); print $2 }' | sort -u))
+fi
+
 # 種別ごとに件数付きの見出しを出し、名前は column で格子に並べる。
 # column はタブ埋めなのでタブ幅で崩れる。expand で実スペースに潰してから字下げする。
 _cleanup_group() {
@@ -66,7 +77,7 @@ _cleanup_group() {
 }
 
 echo
-if [[ -z "$extra_brews$extra_casks$dangling" ]]; then
+if [[ -z "$extra_brews$extra_casks$dangling$extra_skills" ]]; then
     print -P "%F{75}━━ cleanup 候補 ━━%f  なし"
 else
     print -P "%F{75}━━ cleanup 候補 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━%f"
@@ -74,11 +85,13 @@ else
     _cleanup_group cask    "$extra_casks"
     _cleanup_group formula "$extra_brews"
     _cleanup_group symlink "$dangling"
+    _cleanup_group skill   "$extra_skills"
     print -P "  %F{240}dotfiles の宣言に無いものです。手で入れたか、消した feature の残骸か。%f"
     echo
     echo "    残す   features/local/Brewfile に1行足す（次回から出なくなる）"
     echo "    消す   brew uninstall [--cask] <name> → brew autoremove"
     [[ -n "$dangling" ]] && echo "           symlink は unlink <path>"
+    [[ -n "$extra_skills" ]] && echo "    skill  残すなら features/local/Skillfile に1行、消すなら rm -r ~/.claude/skills/<name>"
     echo
 fi
 

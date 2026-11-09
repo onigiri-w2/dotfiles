@@ -16,6 +16,34 @@ else
   # 実ファイル/ディレクトリが居座っている → 上書きせず警告（手動対応）
   echo "⚠️  $skills_dst が symlink でないためスキップしました（中身を確認して手動で対応してください）"
 fi
+# 自作スキルが無いと git は空フォルダを残さず、リンク先が消える。だから毎回作る。
+mkdir -p "$skills_src"
+
+# 外部スキル: 全 feature の Skillfile（<owner/repo> <skill>[@ref]）に書いたものを gh skill で入れる。
+# 入れるのは「まだ無いもの」だけ（冪等）。更新は `gh skill update --all` で明示的に行う。
+# 外部スキルの中身は git に入れない。skills/.gitignore を Skillfile から毎回作り直す。
+# この .gitignore 自体も無視する（未追跡の .gitignore も git は読む）。自作スキルは今までどおりコミットされる。
+skill_ignore="$skills_src/.gitignore"
+print -r -- "# features/claude/install.zsh が Skillfile から作る。手で直さない。" > "$skill_ignore"
+print -r -- "/.gitignore" >> "$skill_ignore"
+for skillfile in "$SCRIPT_DIR"/../*/Skillfile(N); do
+  while read -r skill_repo skill_spec _; do
+    [[ -z "$skill_repo" || "$skill_repo" == \#* || -z "$skill_spec" ]] && continue
+    skill_name="${skill_spec%%@*}"
+    print -r -- "/$skill_name/" >> "$skill_ignore"
+    [[ -d "$skills_src/$skill_name" ]] && continue
+    if ! command -v gh >/dev/null 2>&1; then
+      echo "⚠️  gh が無いため $skill_name を入れられませんでした（features/git の Brewfile を確認してください）"
+      continue
+    fi
+    echo "→ skill: $skill_repo $skill_spec"
+    # gh はファイルの木を長々と出すので、失敗したときだけ末尾を見せる
+    if ! skill_out=$(gh skill install "$skill_repo" "$skill_spec" --dir "$skills_src" </dev/null 2>&1); then
+      echo "⚠️  $skill_name の install に失敗しました（gh auth status を確認してください）"
+      print -r -- "$skill_out" | tail -3 | sed 's/^/    /'
+    fi
+  done < "$skillfile"
+done
 
 # 自作スクリプト群を ~/.claude/scripts にディレクトリごと symlink（skills と同じ方式）。
 # 今後スクリプトを増やしても config/scripts/ に置くだけでよく、install.zsh の編集は不要。
